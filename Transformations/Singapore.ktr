@@ -494,11 +494,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FACT</from>
-      <to>Values conversion</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>ORDERS</from>
       <to>TimeStamp to Date</to>
       <enabled>Y</enabled>
@@ -511,21 +506,6 @@
     <hop>
       <from>PRODUCTS</from>
       <to>PRICES to PRICES_USD</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Values conversion</from>
-      <to>Modified JavaScript value 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>CUSTOMERS</from>
-      <to>If field value is null</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>If field value is null</from>
-      <to>CUSTOMERS Access</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -549,8 +529,38 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Modified JavaScript value</from>
+      <to>PRODUCTS Access </to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>TIME_ID conversion</from>
+      <to>DIM_TIME Access</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FACT</from>
+      <to>Values conversion</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Values conversion</from>
+      <to>Modified JavaScript value 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modified JavaScript value 2</from>
+      <to>FACT Access</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Block until DIM_TIME Access finish</from>
       <to>FACT</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>CUSTOMERS</from>
+      <to>CUSTOMERS Access</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -874,215 +884,6 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
     </GUI>
   </step>
   <step>
-    <name>FACT</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>Singapore_Connection</connection>
-    <sql>SELECT 
-    ORDERFACT.CUSTOMERNUMBER,
-    CUSTOMERS.CUSTOMERNAME,
-    ORDERFACT.PRODUCTCODE,
-    PRODUCTS.PRODUCTNAME,
-    ORDERFACT.TIME_ID,
-    SUM(ORDERFACT.PRICEEACH*ORDERFACT.QUANTITYORDERED) AS SALES,
-    SUM(ORDERFACT.QUANTITYORDERED) AS QUANTITY
-FROM ORDERFACT, CUSTOMERS, PRODUCTS, DIM_TIME
-WHERE ORDERFACT.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER AND
-ORDERFACT.PRODUCTCODE = PRODUCTS.PRODUCTCODE AND
-ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
-CUSTOMERS.COUNTRY = 'Singapore'
-GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE, PRODUCTS.PRODUCTNAME, ORDERFACT.TIME_ID</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>CUSTOMERNUMBER</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>FACT</origin>
-        <comments>CUSTOMERNUMBER</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_PT</date_format_locale>
-        <date_format_timezone>Europe/London</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>CUSTOMERNAME</name>
-        <length>50</length>
-        <precision>-1</precision>
-        <origin>FACT</origin>
-        <comments>CUSTOMERNAME</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_PT</date_format_locale>
-        <date_format_timezone>Europe/London</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>PRODUCTCODE</name>
-        <length>50</length>
-        <precision>-1</precision>
-        <origin>FACT</origin>
-        <comments>PRODUCTCODE</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_PT</date_format_locale>
-        <date_format_timezone>Europe/London</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>PRODUCTNAME</name>
-        <length>70</length>
-        <precision>-1</precision>
-        <origin>FACT</origin>
-        <comments>PRODUCTNAME</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_PT</date_format_locale>
-        <date_format_timezone>Europe/London</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>TIME_ID</name>
-        <length>10</length>
-        <precision>-1</precision>
-        <origin>FACT</origin>
-        <comments>TIME_ID</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_PT</date_format_locale>
-        <date_format_timezone>Europe/London</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>BigNumber</type>
-        <storagetype>normal</storagetype>
-        <name>SALES</name>
-        <length>56</length>
-        <precision>4</precision>
-        <origin>FACT</origin>
-        <comments>SALES</comments>
-        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_PT</date_format_locale>
-        <date_format_timezone>Europe/London</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>QUANTITY</name>
-        <length>15</length>
-        <precision>0</precision>
-        <origin>FACT</origin>
-        <comments>QUANTITY</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_PT</date_format_locale>
-        <date_format_timezone>Europe/London</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>289</xloc>
-      <yloc>527</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>ORDERS</name>
     <type>TableInput</type>
     <description/>
@@ -1103,7 +904,7 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
 	CUSTOMERNUMBER
 FROM ORDERS, ORDERFACT, CUSTOMERS
 WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
-	ORDERFACT.CUSTOMERNUMBER = ORDERS.CUSTOMERNUMBER AND
+	ORDERS.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER AND
 	CUSTOMERS.COUNTRY = 'Singapore'</sql>
     <limit>0</limit>
     <lookup/>
@@ -1279,33 +1080,58 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
     <fields>
       <field>
         <name>PRODUCTCODE</name>
+        <rename/>
       </field>
       <field>
         <name>PRODUCTNAME</name>
+        <rename/>
       </field>
       <field>
         <name>PRODUCTLINE</name>
+        <rename/>
       </field>
       <field>
         <name>PRODUCTSCALE</name>
+        <rename/>
       </field>
       <field>
         <name>PRODUCTVENDOR</name>
+        <rename/>
       </field>
       <field>
         <name>QUANTITYINSTOCK</name>
+        <rename/>
       </field>
       <field>
         <name>BUYPRICE</name>
+        <rename/>
       </field>
       <field>
         <name>MSRP</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
+        <name>QUANTITYINSTOCK</name>
+        <rename>QUANTITYINSTOCK</rename>
+        <type>Number</type>
+        <length>4</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
         <name>BUYPRICE</name>
         <rename>BUYPRICE_USD</rename>
-        <type>None</type>
+        <type>Number</type>
         <length>17</length>
         <precision>0</precision>
         <conversion_mask/>
@@ -1322,7 +1148,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       <meta>
         <name>MSRP</name>
         <rename>MSRP_USD</rename>
-        <type>None</type>
+        <type>Number</type>
         <length>17</length>
         <precision>0</precision>
         <conversion_mask/>
@@ -1628,7 +1454,7 @@ CUSTOMERS.COUNTRY = 'Singapore'
       <meta>
         <name>MONTH_ID</name>
         <rename>MONTH_ID</rename>
-        <type>None</type>
+        <type>Number</type>
         <length>9</length>
         <precision>0</precision>
         <conversion_mask/>
@@ -1645,7 +1471,7 @@ CUSTOMERS.COUNTRY = 'Singapore'
       <meta>
         <name>YEAR_ID</name>
         <rename>YEAR_ID</rename>
-        <type>None</type>
+        <type>Number</type>
         <length>9</length>
         <precision>0</precision>
         <conversion_mask/>
@@ -1711,6 +1537,40 @@ CUSTOMERS.COUNTRY = 'Singapore'
         <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>ORDERNUMBER</name>
+        <rename>ORDERNUMBER</rename>
+        <type>Number</type>
+        <length>9</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>CUSTOMERNUMBER</name>
+        <rename>CUSTOMERNUMBER</rename>
+        <type>Number</type>
+        <length>9</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
       <meta>
         <name>ORDERDATE</name>
         <rename>ORDERDATE</rename>
@@ -1778,96 +1638,6 @@ CUSTOMERS.COUNTRY = 'Singapore'
     </GUI>
   </step>
   <step>
-    <name>Values conversion</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>CUSTOMERNUMBER</name>
-        <rename/>
-      </field>
-      <field>
-        <name>CUSTOMERNAME</name>
-        <rename/>
-      </field>
-      <field>
-        <name>PRODUCTCODE</name>
-        <rename/>
-      </field>
-      <field>
-        <name>PRODUCTNAME</name>
-        <rename/>
-      </field>
-      <field>
-        <name>TIME_ID</name>
-        <rename/>
-      </field>
-      <field>
-        <name>SALES</name>
-        <rename/>
-      </field>
-      <field>
-        <name>QUANTITY</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>TIME_ID</name>
-        <rename>TIME_ID</rename>
-        <type>String</type>
-        <length>10</length>
-        <precision>-2</precision>
-        <conversion_mask>dd/MM/yyyy</conversion_mask>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>SALES</name>
-        <rename>SALES_USD</rename>
-        <type>None</type>
-        <length>56</length>
-        <precision>4</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>545</xloc>
-      <yloc>527</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Modified JavaScript value</name>
     <type>ScriptValueMod</type>
     <description/>
@@ -1922,92 +1692,6 @@ var MSRP = MSRP_USD * 1.3316;
     </GUI>
   </step>
   <step>
-    <name>Modified JavaScript value 2</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var BUYPRICE = SALES_USD * 1.3316;
-
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>BUYPRICE</name>
-        <rename>BUYPRICE</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>913</xloc>
-      <yloc>527</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>If field value is null</name>
-    <type>IfNull</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <replaceAllByValue/>
-    <replaceAllMask/>
-    <selectFields>Y</selectFields>
-    <selectValuesType>N</selectValuesType>
-    <setEmptyStringAll>Y</setEmptyStringAll>
-    <valuetypes>
-      </valuetypes>
-    <fields>
-      <field>
-        <name>STATE</name>
-        <value>N/A</value>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>560</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>CUSTOMERS Access</name>
     <type>AccessOutput</type>
     <description/>
@@ -2018,8 +1702,8 @@ var MSRP = MSRP_USD * 1.3316;
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\CUSTOMERS_Singapore</filename>
-    <table/>
+    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\CUSTOMERS_Singapore.mdb</filename>
+    <table>CUSTOMERS</table>
     <truncate>Y</truncate>
     <create_file>Y</create_file>
     <create_table>Y</create_table>
@@ -2035,7 +1719,7 @@ var MSRP = MSRP_USD * 1.3316;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>896</xloc>
+      <xloc>1088</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2113,8 +1797,8 @@ var MSRP = MSRP_USD * 1.3316;
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\ORDERS_Singapore</filename>
-    <table/>
+    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\ORDERS_Singapore.mdb</filename>
+    <table>ORDERS</table>
     <truncate>Y</truncate>
     <create_file>Y</create_file>
     <create_table>Y</create_table>
@@ -2130,7 +1814,7 @@ var MSRP = MSRP_USD * 1.3316;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>896</xloc>
+      <xloc>1088</xloc>
       <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2198,6 +1882,502 @@ var MSRP = MSRP_USD * 1.3316;
     </GUI>
   </step>
   <step>
+    <name>PRODUCTS Access </name>
+    <type>AccessOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\PRODUCTS_Singapore.mdb</filename>
+    <table>PRODUCTS</table>
+    <truncate>Y</truncate>
+    <create_file>Y</create_file>
+    <create_table>Y</create_table>
+    <commit_size>1000</commit_size>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <do_not_open_newfile_init>N</do_not_open_newfile_init>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1088</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DIM_TIME Access</name>
+    <type>AccessOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\TIME_Singapore.mdb</filename>
+    <table>DIM_TIME</table>
+    <truncate>Y</truncate>
+    <create_file>Y</create_file>
+    <create_table>Y</create_table>
+    <commit_size>1000</commit_size>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <do_not_open_newfile_init>N</do_not_open_newfile_init>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1088</xloc>
+      <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FACT</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Singapore_Connection</connection>
+    <sql>SELECT 
+    ORDERFACT.CUSTOMERNUMBER,
+    CUSTOMERS.CUSTOMERNAME,
+    ORDERFACT.PRODUCTCODE,
+    PRODUCTS.PRODUCTNAME,
+    ORDERFACT.TIME_ID,
+    SUM(ORDERFACT.PRICEEACH*ORDERFACT.QUANTITYORDERED) AS SALES,
+    SUM(ORDERFACT.QUANTITYORDERED) AS QUANTITY
+FROM ORDERFACT, CUSTOMERS, PRODUCTS, DIM_TIME
+WHERE ORDERFACT.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER AND
+ORDERFACT.PRODUCTCODE = PRODUCTS.PRODUCTCODE AND
+ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
+CUSTOMERS.COUNTRY = 'Singapore'
+GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE, PRODUCTS.PRODUCTNAME, ORDERFACT.TIME_ID</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>CUSTOMERNUMBER</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>FACT</origin>
+        <comments>CUSTOMERNUMBER</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_PT</date_format_locale>
+        <date_format_timezone>Europe/London</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>CUSTOMERNAME</name>
+        <length>50</length>
+        <precision>-1</precision>
+        <origin>FACT</origin>
+        <comments>CUSTOMERNAME</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_PT</date_format_locale>
+        <date_format_timezone>Europe/London</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>PRODUCTCODE</name>
+        <length>50</length>
+        <precision>-1</precision>
+        <origin>FACT</origin>
+        <comments>PRODUCTCODE</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_PT</date_format_locale>
+        <date_format_timezone>Europe/London</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>PRODUCTNAME</name>
+        <length>70</length>
+        <precision>-1</precision>
+        <origin>FACT</origin>
+        <comments>PRODUCTNAME</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_PT</date_format_locale>
+        <date_format_timezone>Europe/London</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>TIME_ID</name>
+        <length>10</length>
+        <precision>-1</precision>
+        <origin>FACT</origin>
+        <comments>TIME_ID</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_PT</date_format_locale>
+        <date_format_timezone>Europe/London</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>BigNumber</type>
+        <storagetype>normal</storagetype>
+        <name>SALES</name>
+        <length>56</length>
+        <precision>4</precision>
+        <origin>FACT</origin>
+        <comments>SALES</comments>
+        <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_PT</date_format_locale>
+        <date_format_timezone>Europe/London</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>QUANTITY</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>FACT</origin>
+        <comments>QUANTITY</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_PT</date_format_locale>
+        <date_format_timezone>Europe/London</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Values conversion</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>CUSTOMERNUMBER</name>
+        <rename/>
+      </field>
+      <field>
+        <name>CUSTOMERNAME</name>
+        <rename/>
+      </field>
+      <field>
+        <name>PRODUCTCODE</name>
+        <rename/>
+      </field>
+      <field>
+        <name>PRODUCTNAME</name>
+        <rename/>
+      </field>
+      <field>
+        <name>TIME_ID</name>
+        <rename/>
+      </field>
+      <field>
+        <name>SALES</name>
+        <rename/>
+      </field>
+      <field>
+        <name>QUANTITY</name>
+        <rename/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>CUSTOMERNUMBER</name>
+        <rename>CUSTOMERNUMBER</rename>
+        <type>None</type>
+        <length>9</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>CUSTOMERNAME</name>
+        <rename>CUSTOMERNAME</rename>
+        <type>None</type>
+        <length>50</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>PRODUCTCODE</name>
+        <rename>PRODUCTCODE</rename>
+        <type>None</type>
+        <length>50</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>PRODUCTNAME</name>
+        <rename>PRODUCTNAME</rename>
+        <type>None</type>
+        <length>70</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>TIME_ID</name>
+        <rename>TIME_ID</rename>
+        <type>None</type>
+        <length>10</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>SALES</name>
+        <rename>SALES</rename>
+        <type>Integer</type>
+        <length>56</length>
+        <precision>4</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>QUANTITY</name>
+        <rename>QUANTITY</rename>
+        <type>None</type>
+        <length>15</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>544</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Modified JavaScript value 2</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var SALES = SALES * 1.3316;
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>SALES</name>
+        <rename>SALES</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>912</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Block until DIM_TIME Access finish</name>
     <type>BlockUntilStepsFinish</type>
     <description/>
@@ -2224,6 +2404,39 @@ var MSRP = MSRP_USD * 1.3316;
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FACT Access</name>
+    <type>AccessOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\FACT_Singapore.mdb</filename>
+    <table>FACT</table>
+    <truncate>Y</truncate>
+    <create_file>Y</create_file>
+    <create_table>Y</create_table>
+    <commit_size>1000</commit_size>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <do_not_open_newfile_init>N</do_not_open_newfile_init>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1088</xloc>
       <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>

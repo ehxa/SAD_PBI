@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>A02-USA</name>
+    <name>A02-General</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -428,16 +428,16 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2024/03/03 19:19:13.697</created_date>
+    <created_date>2024/03/09 22:03:12.423</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2024/03/03 19:19:13.697</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2024/03/09 22:03:12.423</modified_date>
+    <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>USA_Connection</name>
+    <name>Connection_General</name>
     <server>localhost</server>
     <type>HYPERSONIC</type>
     <access>Native</access>
@@ -560,8 +560,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1036</xloc>
-      <yloc>435</yloc>
+      <xloc>800</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -591,8 +591,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1420</xloc>
-      <yloc>675</yloc>
+      <xloc>1008</xloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -622,8 +622,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1388</xloc>
-      <yloc>515</yloc>
+      <xloc>1008</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -653,8 +653,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1036</xloc>
-      <yloc>595</yloc>
+      <xloc>800</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -669,7 +669,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>USA_Connection</connection>
+    <connection>Connection_General</connection>
     <sql>SELECT DISTINCT
 	CUSTOMERNUMBER,
 	CUSTOMERNAME,
@@ -679,9 +679,7 @@
 	POSTALCODE,
 	COUNTRY
 FROM CUSTOMERS, ORDERFACT 
-WHERE ORDERFACT.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER AND
-CUSTOMERS.COUNTRY = 'USA'
-</sql>
+WHERE ORDERFACT.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -860,8 +858,8 @@ CUSTOMERS.COUNTRY = 'USA'
       </output>
     </remotesteps>
     <GUI>
-      <xloc>784</xloc>
-      <yloc>336</yloc>
+      <xloc>464</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -889,7 +887,7 @@ CUSTOMERS.COUNTRY = 'USA'
     <appendLines>N</appendLines>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>Z:\Documents\GitHub\SAD_PBI\Output\USA\CUSTOMERS_USA</name>
+      <name>Z:\Documents\GitHub\SAD_PBI\Output\General\CUSTOMERS_General</name>
       <extention>xlsx</extention>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
       <split>N</split>
@@ -897,7 +895,7 @@ CUSTOMERS.COUNTRY = 'USA'
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>CUSTOMERS_USA</sheetname>
+      <sheetname>CUSTOMERS_General</sheetname>
       <autosizecolums>Y</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
@@ -1009,8 +1007,8 @@ CUSTOMERS.COUNTRY = 'USA'
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1500</xloc>
-      <yloc>339</yloc>
+      <xloc>1440</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1025,7 +1023,7 @@ CUSTOMERS.COUNTRY = 'USA'
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>USA_Connection</connection>
+    <connection>Connection_General</connection>
     <sql>SELECT DISTINCT
 	TIME_ID, 
 	MONTH_ID,
@@ -1033,8 +1031,7 @@ CUSTOMERS.COUNTRY = 'USA'
 FROM DIM_TIME, ORDERFACT, CUSTOMERS
 WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
 	ORDERFACT.MONTH_ID = DIM_TIME.MONTH_ID AND
-	ORDERFACT.YEAR_ID = DIM_TIME.YEAR_ID AND
-	CUSTOMERS.COUNTRY = 'USA'</sql>
+	ORDERFACT.YEAR_ID = DIM_TIME.YEAR_ID</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -1121,8 +1118,8 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       </output>
     </remotesteps>
     <GUI>
-      <xloc>784</xloc>
-      <yloc>592</yloc>
+      <xloc>464</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1150,7 +1147,7 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
     <appendLines>N</appendLines>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>Z:\Documents\GitHub\SAD_PBI\Output\USA\DIM_TIME_USA</name>
+      <name>Z:\Documents\GitHub\SAD_PBI\Output\General\DIM_TIME_General</name>
       <extention>xlsx</extention>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
       <split>N</split>
@@ -1158,7 +1155,7 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>DIM_TIME_USA</sheetname>
+      <sheetname>DIM_TIME_General</sheetname>
       <autosizecolums>N</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
@@ -1222,8 +1219,8 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1500</xloc>
-      <yloc>595</yloc>
+      <xloc>1440</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1238,7 +1235,7 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>USA_Connection</connection>
+    <connection>Connection_General</connection>
     <sql>SELECT 
     ORDERFACT.CUSTOMERNUMBER,
     CUSTOMERS.CUSTOMERNAME,
@@ -1250,8 +1247,7 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
 FROM ORDERFACT, CUSTOMERS, PRODUCTS, DIM_TIME
 WHERE ORDERFACT.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER AND
 ORDERFACT.PRODUCTCODE = PRODUCTS.PRODUCTCODE AND
-ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
-CUSTOMERS.COUNTRY = 'USA'
+ORDERFACT.TIME_ID = DIM_TIME.TIME_ID
 GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE, PRODUCTS.PRODUCTNAME, ORDERFACT.TIME_ID</sql>
     <limit>0</limit>
     <lookup/>
@@ -1431,8 +1427,8 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
       </output>
     </remotesteps>
     <GUI>
-      <xloc>784</xloc>
-      <yloc>672</yloc>
+      <xloc>464</xloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1460,7 +1456,7 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
     <appendLines>N</appendLines>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>Z:\Documents\GitHub\SAD_PBI\Output\USA\FACT_USA</name>
+      <name>Z:\Documents\GitHub\SAD_PBI\Output\General\FACT_General</name>
       <extention>xlsx</extention>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
       <split>N</split>
@@ -1468,7 +1464,7 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>FACT_USA</sheetname>
+      <sheetname>FACT_General</sheetname>
       <autosizecolums>Y</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
@@ -1580,8 +1576,8 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1676</xloc>
-      <yloc>675</yloc>
+      <xloc>1440</xloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1596,7 +1592,7 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>USA_Connection</connection>
+    <connection>Connection_General</connection>
     <sql>SELECT DISTINCT
 	ORDERNUMBER,
 	ORDERDATE,
@@ -1606,8 +1602,7 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
 	CUSTOMERNUMBER
 FROM ORDERS, ORDERFACT, CUSTOMERS
 WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
-	ORDERS.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER AND
-	CUSTOMERS.COUNTRY = 'USA'</sql>
+	ORDERS.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -1763,8 +1758,8 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       </output>
     </remotesteps>
     <GUI>
-      <xloc>784</xloc>
-      <yloc>432</yloc>
+      <xloc>464</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1792,7 +1787,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
     <appendLines>N</appendLines>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>Z:\Documents\GitHub\SAD_PBI\Output\USA\ORDERS_USA</name>
+      <name>Z:\Documents\GitHub\SAD_PBI\Output\General\ORDERS_General</name>
       <extention>xlsx</extention>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
       <split>N</split>
@@ -1800,7 +1795,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>ORDERS_USA</sheetname>
+      <sheetname>ORDERS_General</sheetname>
       <autosizecolums>Y</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
@@ -1900,8 +1895,8 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1500</xloc>
-      <yloc>435</yloc>
+      <xloc>1440</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1916,7 +1911,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>USA_Connection</connection>
+    <connection>Connection_General</connection>
     <sql>SELECT DISTINCT
 	PRODUCTCODE, 
 	PRODUCTNAME,
@@ -1928,8 +1923,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
 	MSRP
 FROM PRODUCTS, ORDERFACT, CUSTOMERS
 WHERE ORDERFACT.PRODUCTCODE = PRODUCTS.PRODUCTCODE AND
-ORDERFACT.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER AND
-CUSTOMERS.COUNTRY = 'USA'	
+ORDERFACT.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -2132,8 +2126,8 @@ CUSTOMERS.COUNTRY = 'USA'
       </output>
     </remotesteps>
     <GUI>
-      <xloc>784</xloc>
-      <yloc>512</yloc>
+      <xloc>464</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2161,7 +2155,7 @@ CUSTOMERS.COUNTRY = 'USA'
     <appendLines>N</appendLines>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>Z:\Documents\GitHub\SAD_PBI\Output\USA\PRODUCTS_USA</name>
+      <name>Z:\Documents\GitHub\SAD_PBI\Output\General\PRODUCTS_General</name>
       <extention>xlsx</extention>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
       <split>N</split>
@@ -2169,7 +2163,7 @@ CUSTOMERS.COUNTRY = 'USA'
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>PRODUCTS_USA</sheetname>
+      <sheetname>PRODUCTS_General</sheetname>
       <autosizecolums>Y</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
@@ -2293,8 +2287,8 @@ CUSTOMERS.COUNTRY = 'USA'
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1676</xloc>
-      <yloc>515</yloc>
+      <xloc>1440</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

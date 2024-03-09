@@ -1193,7 +1193,7 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>Sheet1</sheetname>
+      <sheetname>DIM_TIME_Japan</sheetname>
       <autosizecolums>N</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
@@ -1467,7 +1467,7 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>FACT_JAPAN</sheetname>
+      <sheetname>FACT_Japan</sheetname>
       <autosizecolums>Y</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
@@ -1605,7 +1605,7 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
 	CUSTOMERNUMBER
 FROM ORDERS, ORDERFACT, CUSTOMERS
 WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
-	ORDERFACT.CUSTOMERNUMBER = ORDERS.CUSTOMERNUMBER AND
+	ORDERS.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER AND
 	CUSTOMERS.COUNTRY = 'Japan'</sql>
     <limit>0</limit>
     <lookup/>
