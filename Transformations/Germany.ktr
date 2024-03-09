@@ -560,8 +560,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>736</xloc>
-      <yloc>352</yloc>
+      <xloc>704</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -591,8 +591,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>592</yloc>
+      <xloc>1088</xloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -622,8 +622,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1088</xloc>
-      <yloc>432</yloc>
+      <xloc>1056</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -653,8 +653,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>736</xloc>
-      <yloc>512</yloc>
+      <xloc>704</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -860,8 +860,8 @@ CUSTOMERS.COUNTRY = 'Germany'
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>256</yloc>
+      <xloc>416</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1009,8 +1009,8 @@ CUSTOMERS.COUNTRY = 'Germany'
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1200</xloc>
-      <yloc>256</yloc>
+      <xloc>1168</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1121,8 +1121,8 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>512</yloc>
+      <xloc>416</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1222,8 +1222,8 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1200</xloc>
-      <yloc>512</yloc>
+      <xloc>1168</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1431,8 +1431,8 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>592</yloc>
+      <xloc>416</xloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1580,8 +1580,8 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1376</xloc>
-      <yloc>592</yloc>
+      <xloc>1344</xloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1763,8 +1763,8 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>352</yloc>
+      <xloc>416</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1900,8 +1900,8 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1200</xloc>
-      <yloc>352</yloc>
+      <xloc>1168</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2132,8 +2132,8 @@ CUSTOMERS.COUNTRY = 'Germany'
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>432</yloc>
+      <xloc>416</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2293,8 +2293,8 @@ CUSTOMERS.COUNTRY = 'Germany'
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1376</xloc>
-      <yloc>432</yloc>
+      <xloc>1344</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
