@@ -519,11 +519,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>CUSTOMERS</from>
-      <to>CUSTOMERS CSV</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>TimeStamp to Date</from>
       <to>ORDERS CSV</to>
       <enabled>Y</enabled>
@@ -541,6 +536,16 @@
     <hop>
       <from>Modified JavaScript value 2</from>
       <to>FACT CSV</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>CUSTOMERS</from>
+      <to>If STATE value is null</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If STATE value is null</from>
+      <to>CUSTOMERS CSV</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1507,7 +1512,7 @@ var MSRP = MSRP_USD * 0.9142;
       <jsScript>
         <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var SALES = SALES_USD * 147.1449;
+        <jsScript_script>var SALES = SALES_USD * 0.9142;
 
 </jsScript_script>
       </jsScript>
@@ -2584,6 +2589,82 @@ CUSTOMERS.COUNTRY = 'France'
     <GUI>
       <xloc>672</xloc>
       <yloc>576</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>If STATE value is null</name>
+    <type>IfNull</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <replaceAllByValue/>
+    <replaceAllMask/>
+    <selectFields>Y</selectFields>
+    <selectValuesType>N</selectValuesType>
+    <setEmptyStringAll>N</setEmptyStringAll>
+    <valuetypes>
+      </valuetypes>
+    <fields>
+      <field>
+        <name>CUSTOMERNUMBER</name>
+        <value/>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>CUSTOMERNAME</name>
+        <value/>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>PHONE</name>
+        <value/>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>CITY</name>
+        <value/>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>STATE</name>
+        <value>N/A</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>POSTALCODE</name>
+        <value/>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>COUNTRY</name>
+        <value/>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

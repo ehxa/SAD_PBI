@@ -437,6 +437,69 @@
   <notepads>
   </notepads>
   <connection>
+    <name>Output_USA</name>
+    <server/>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database/>
+    <port>1521</port>
+    <username/>
+    <password>Encrypted </password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>CUSTOM_DRIVER_CLASS</code>
+        <attribute>org.sqlite.JDBC</attribute>
+      </attribute>
+      <attribute>
+        <code>CUSTOM_URL</code>
+        <attribute>jdbc:sqlite:c:\sqlite\usa_db</attribute>
+      </attribute>
+      <attribute>
+        <code>DATABASE_DIALECT_ID</code>
+        <attribute>Generic database</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>1521</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>USA_Connection</name>
     <server>localhost</server>
     <type>HYPERSONIC</type>
@@ -489,31 +552,6 @@
   </connection>
   <order>
     <hop>
-      <from>Block until CUSTOMERS Writer finish</from>
-      <to>ORDERS Writer</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block until DIM_TIME Writer finish</from>
-      <to>FACT Writer</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block until ORDERS Writer finish</from>
-      <to>PRODUCTS WRITER</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block until PRODUCTS Writer finish</from>
-      <to>DIM_TIME Writer</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>CUSTOMERS</from>
-      <to>CUSTOMERS Writer</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>ORDERS</from>
       <to>Block until CUSTOMERS Writer finish</to>
       <enabled>Y</enabled>
@@ -533,6 +571,31 @@
       <to>Block until DIM_TIME Writer finish</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>CUSTOMERS</from>
+      <to>CUSTOMERS Lite</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Block until CUSTOMERS Writer finish</from>
+      <to>ORDERS Lite</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Block until ORDERS Writer finish</from>
+      <to>PRODUCTS Lite</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Block until DIM_TIME Writer finish</from>
+      <to>FACT Lite</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Block until PRODUCTS Writer finish</from>
+      <to>DIM_TIME Lite</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>Block until CUSTOMERS Writer finish</name>
@@ -547,7 +610,7 @@
     </partitioning>
     <steps>
       <step>
-        <name>CUSTOMERS Writer</name>
+        <name>CUSTOMERS Lite</name>
         <CopyNr>0</CopyNr>
       </step>
     </steps>
@@ -578,7 +641,7 @@
     </partitioning>
     <steps>
       <step>
-        <name>DIM_TIME Writer</name>
+        <name>DIM_TIME Lite</name>
         <CopyNr>0</CopyNr>
       </step>
     </steps>
@@ -609,7 +672,7 @@
     </partitioning>
     <steps>
       <step>
-        <name>ORDERS Writer</name>
+        <name>ORDERS Lite</name>
         <CopyNr>0</CopyNr>
       </step>
     </steps>
@@ -640,7 +703,7 @@
     </partitioning>
     <steps>
       <step>
-        <name>PRODUCTS WRITER</name>
+        <name>PRODUCTS Lite</name>
         <CopyNr>0</CopyNr>
       </step>
     </steps>
@@ -866,155 +929,6 @@ CUSTOMERS.COUNTRY = 'USA'
     </GUI>
   </step>
   <step>
-    <name>CUSTOMERS Writer</name>
-    <type>TypeExitExcelWriterStep</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <header>Y</header>
-    <footer>N</footer>
-    <makeSheetActive>N</makeSheetActive>
-    <startingCell>A1</startingCell>
-    <appendOmitHeader>N</appendOmitHeader>
-    <appendOffset>0</appendOffset>
-    <appendEmpty>0</appendEmpty>
-    <rowWritingMethod>overwrite</rowWritingMethod>
-    <forceFormulaRecalculation>N</forceFormulaRecalculation>
-    <leaveExistingStylesUnchanged>N</leaveExistingStylesUnchanged>
-    <appendLines>N</appendLines>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <file>
-      <name>Z:\Documents\GitHub\SAD_PBI\Output\USA\CUSTOMERS_USA</name>
-      <extention>xlsx</extention>
-      <do_not_open_newfile_init>N</do_not_open_newfile_init>
-      <split>N</split>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <sheetname>CUSTOMERS_USA</sheetname>
-      <autosizecolums>Y</autosizecolums>
-      <stream_data>N</stream_data>
-      <protect_sheet>N</protect_sheet>
-      <password>Encrypted </password>
-      <protected_by/>
-      <splitevery>0</splitevery>
-      <if_file_exists>reuse</if_file_exists>
-      <if_sheet_exists>new</if_sheet_exists>
-    </file>
-    <template>
-      <enabled>N</enabled>
-      <sheet_enabled>N</sheet_enabled>
-      <filename>template.xls</filename>
-      <sheetname/>
-      <hidden>N</hidden>
-    </template>
-    <fields>
-      <field>
-        <name>CUSTOMERNUMBER</name>
-        <type>Integer</type>
-        <format/>
-        <title>CUSTOMERNUMBER</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>CUSTOMERNAME</name>
-        <type>String</type>
-        <format/>
-        <title>CUSTOMERNAME</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>PHONE</name>
-        <type>String</type>
-        <format/>
-        <title>PHONE</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>CITY</name>
-        <type>String</type>
-        <format/>
-        <title>CITY</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>STATE</name>
-        <type>String</type>
-        <format/>
-        <title>STATE</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>POSTALCODE</name>
-        <type>String</type>
-        <format/>
-        <title>POSTALCODE</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>COUNTRY</name>
-        <type>String</type>
-        <format/>
-        <title>COUNTRY</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1500</xloc>
-      <yloc>339</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>DIM_TIME</name>
     <type>TableInput</type>
     <description/>
@@ -1124,107 +1038,6 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
     <GUI>
       <xloc>784</xloc>
       <yloc>592</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>DIM_TIME Writer</name>
-    <type>TypeExitExcelWriterStep</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <header>Y</header>
-    <footer>N</footer>
-    <makeSheetActive>Y</makeSheetActive>
-    <startingCell>A1</startingCell>
-    <appendOmitHeader>N</appendOmitHeader>
-    <appendOffset>0</appendOffset>
-    <appendEmpty>0</appendEmpty>
-    <rowWritingMethod>overwrite</rowWritingMethod>
-    <forceFormulaRecalculation>N</forceFormulaRecalculation>
-    <leaveExistingStylesUnchanged>N</leaveExistingStylesUnchanged>
-    <appendLines>N</appendLines>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <file>
-      <name>Z:\Documents\GitHub\SAD_PBI\Output\USA\DIM_TIME_USA</name>
-      <extention>xlsx</extention>
-      <do_not_open_newfile_init>N</do_not_open_newfile_init>
-      <split>N</split>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <sheetname>DIM_TIME_USA</sheetname>
-      <autosizecolums>N</autosizecolums>
-      <stream_data>N</stream_data>
-      <protect_sheet>N</protect_sheet>
-      <password>Encrypted </password>
-      <protected_by/>
-      <splitevery>0</splitevery>
-      <if_file_exists>new</if_file_exists>
-      <if_sheet_exists>new</if_sheet_exists>
-    </file>
-    <template>
-      <enabled>N</enabled>
-      <sheet_enabled>N</sheet_enabled>
-      <filename>template.xls</filename>
-      <sheetname/>
-      <hidden>N</hidden>
-    </template>
-    <fields>
-      <field>
-        <name>TIME_ID</name>
-        <type>String</type>
-        <format/>
-        <title>TIME_ID</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>MONTH_ID</name>
-        <type>Integer</type>
-        <format/>
-        <title>MONTH_ID</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>YEAR_ID</name>
-        <type>Integer</type>
-        <format/>
-        <title>YEAR_ID</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1500</xloc>
-      <yloc>595</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1438,155 +1251,6 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
     </GUI>
   </step>
   <step>
-    <name>FACT Writer</name>
-    <type>TypeExitExcelWriterStep</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <header>Y</header>
-    <footer>N</footer>
-    <makeSheetActive>N</makeSheetActive>
-    <startingCell>A1</startingCell>
-    <appendOmitHeader>N</appendOmitHeader>
-    <appendOffset>0</appendOffset>
-    <appendEmpty>0</appendEmpty>
-    <rowWritingMethod>overwrite</rowWritingMethod>
-    <forceFormulaRecalculation>N</forceFormulaRecalculation>
-    <leaveExistingStylesUnchanged>N</leaveExistingStylesUnchanged>
-    <appendLines>N</appendLines>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <file>
-      <name>Z:\Documents\GitHub\SAD_PBI\Output\USA\FACT_USA</name>
-      <extention>xlsx</extention>
-      <do_not_open_newfile_init>N</do_not_open_newfile_init>
-      <split>N</split>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <sheetname>FACT_USA</sheetname>
-      <autosizecolums>Y</autosizecolums>
-      <stream_data>N</stream_data>
-      <protect_sheet>N</protect_sheet>
-      <password>Encrypted </password>
-      <protected_by/>
-      <splitevery>0</splitevery>
-      <if_file_exists>reuse</if_file_exists>
-      <if_sheet_exists>new</if_sheet_exists>
-    </file>
-    <template>
-      <enabled>N</enabled>
-      <sheet_enabled>N</sheet_enabled>
-      <filename>template.xls</filename>
-      <sheetname/>
-      <hidden>N</hidden>
-    </template>
-    <fields>
-      <field>
-        <name>CUSTOMERNUMBER</name>
-        <type>Integer</type>
-        <format/>
-        <title>CUSTOMERNUMBER</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>CUSTOMERNAME</name>
-        <type>String</type>
-        <format/>
-        <title>CUSTOMERNAME</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>PRODUCTCODE</name>
-        <type>String</type>
-        <format/>
-        <title>PRODUCTCODE</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>PRODUCTNAME</name>
-        <type>String</type>
-        <format/>
-        <title>PRODUCTNAME</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>TIME_ID</name>
-        <type>String</type>
-        <format/>
-        <title>TIME_ID</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>SALES</name>
-        <type>BigNumber</type>
-        <format/>
-        <title>SALES</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>QUANTITY</name>
-        <type>Integer</type>
-        <format/>
-        <title>QUANTITY</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1676</xloc>
-      <yloc>675</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>ORDERS</name>
     <type>TableInput</type>
     <description/>
@@ -1766,143 +1430,6 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
     <GUI>
       <xloc>784</xloc>
       <yloc>432</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>ORDERS Writer</name>
-    <type>TypeExitExcelWriterStep</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <header>Y</header>
-    <footer>N</footer>
-    <makeSheetActive>N</makeSheetActive>
-    <startingCell>A1</startingCell>
-    <appendOmitHeader>N</appendOmitHeader>
-    <appendOffset>0</appendOffset>
-    <appendEmpty>0</appendEmpty>
-    <rowWritingMethod>overwrite</rowWritingMethod>
-    <forceFormulaRecalculation>N</forceFormulaRecalculation>
-    <leaveExistingStylesUnchanged>N</leaveExistingStylesUnchanged>
-    <appendLines>N</appendLines>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <file>
-      <name>Z:\Documents\GitHub\SAD_PBI\Output\USA\ORDERS_USA</name>
-      <extention>xlsx</extention>
-      <do_not_open_newfile_init>N</do_not_open_newfile_init>
-      <split>N</split>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <sheetname>ORDERS_USA</sheetname>
-      <autosizecolums>Y</autosizecolums>
-      <stream_data>N</stream_data>
-      <protect_sheet>N</protect_sheet>
-      <password>Encrypted </password>
-      <protected_by/>
-      <splitevery>0</splitevery>
-      <if_file_exists>reuse</if_file_exists>
-      <if_sheet_exists>new</if_sheet_exists>
-    </file>
-    <template>
-      <enabled>N</enabled>
-      <sheet_enabled>N</sheet_enabled>
-      <filename>template.xls</filename>
-      <sheetname/>
-      <hidden>N</hidden>
-    </template>
-    <fields>
-      <field>
-        <name>ORDERNUMBER</name>
-        <type>Integer</type>
-        <format/>
-        <title>ORDERNUMBER</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>ORDERDATE</name>
-        <type>Timestamp</type>
-        <format/>
-        <title>ORDERDATE</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>REQUIREDDATE</name>
-        <type>Timestamp</type>
-        <format/>
-        <title>REQUIREDDATE</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>SHIPPEDDATE</name>
-        <type>Timestamp</type>
-        <format/>
-        <title>SHIPPEDDATE</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>STATUS</name>
-        <type>String</type>
-        <format/>
-        <title>STATUS</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>CUSTOMERNUMBER</name>
-        <type>Integer</type>
-        <format/>
-        <title>CUSTOMERNUMBER</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1500</xloc>
-      <yloc>435</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2139,8 +1666,8 @@ CUSTOMERS.COUNTRY = 'USA'
     </GUI>
   </step>
   <step>
-    <name>PRODUCTS WRITER</name>
-    <type>TypeExitExcelWriterStep</type>
+    <name>CUSTOMERS Lite</name>
+    <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -2149,141 +1676,24 @@ CUSTOMERS.COUNTRY = 'USA'
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <header>Y</header>
-    <footer>N</footer>
-    <makeSheetActive>N</makeSheetActive>
-    <startingCell>A1</startingCell>
-    <appendOmitHeader>N</appendOmitHeader>
-    <appendOffset>0</appendOffset>
-    <appendEmpty>0</appendEmpty>
-    <rowWritingMethod>overwrite</rowWritingMethod>
-    <forceFormulaRecalculation>N</forceFormulaRecalculation>
-    <leaveExistingStylesUnchanged>N</leaveExistingStylesUnchanged>
-    <appendLines>N</appendLines>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <file>
-      <name>Z:\Documents\GitHub\SAD_PBI\Output\USA\PRODUCTS_USA</name>
-      <extention>xlsx</extention>
-      <do_not_open_newfile_init>N</do_not_open_newfile_init>
-      <split>N</split>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <sheetname>PRODUCTS_USA</sheetname>
-      <autosizecolums>Y</autosizecolums>
-      <stream_data>N</stream_data>
-      <protect_sheet>N</protect_sheet>
-      <password>Encrypted </password>
-      <protected_by/>
-      <splitevery>0</splitevery>
-      <if_file_exists>reuse</if_file_exists>
-      <if_sheet_exists>new</if_sheet_exists>
-    </file>
-    <template>
-      <enabled>N</enabled>
-      <sheet_enabled>N</sheet_enabled>
-      <filename>template.xls</filename>
-      <sheetname/>
-      <hidden>N</hidden>
-    </template>
+    <connection>Output_USA</connection>
+    <schema>usa_db</schema>
+    <table>CUSTOMERS</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
     <fields>
-      <field>
-        <name>PRODUCTCODE</name>
-        <type>String</type>
-        <format/>
-        <title>PRODUCTCODE</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>PRODUCTNAME</name>
-        <type>String</type>
-        <format/>
-        <title>PRODUCTNAME</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>PRODUCTLINE</name>
-        <type>String</type>
-        <format/>
-        <title>PRODUCTLINE</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>PRODUCTSCALE</name>
-        <type>String</type>
-        <format/>
-        <title>PRODUCTSCALE</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>PRODUCTVENDOR</name>
-        <type>String</type>
-        <format/>
-        <title>PRODUCTVENDOR</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>QUANTITYINSTOCK</name>
-        <type>Integer</type>
-        <format/>
-        <title>QUANTITYINSTOCK</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>BUYPRICE</name>
-        <type>Integer</type>
-        <format/>
-        <title>BUYPRICE</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>MSRP</name>
-        <type>Integer</type>
-        <format/>
-        <title>MSRP</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -2294,8 +1704,184 @@ CUSTOMERS.COUNTRY = 'USA'
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1676</xloc>
-      <yloc>515</yloc>
+      <xloc>1312</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ORDERS Lite</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Output_USA</connection>
+    <schema>usa_db</schema>
+    <table>ORDERS</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1280</xloc>
+      <yloc>432</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>PRODUCTS Lite</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Output_USA</connection>
+    <schema>usa_db</schema>
+    <table>PRODUCTS</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1600</xloc>
+      <yloc>512</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FACT Lite</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Output_USA</connection>
+    <schema>usa_db</schema>
+    <table>FACT</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1616</xloc>
+      <yloc>672</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DIM_TIME Lite</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Output_USA</connection>
+    <schema>usa_db</schema>
+    <table>DIM_TIME</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1264</xloc>
+      <yloc>592</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
