@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>A02-Singapore</name>
+    <name>Singapore</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -509,53 +509,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Block until CUSTOMERS Access finish</from>
-      <to>ORDERS</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>TimeStamp to Date</from>
-      <to>ORDERS Access</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block until ORDERS Access finish</from>
-      <to>PRODUCTS</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block until PRODUCTS Access finish</from>
-      <to>DIM_TIME</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Modified JavaScript value</from>
-      <to>PRODUCTS Access </to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>TIME_ID conversion</from>
-      <to>DIM_TIME Access</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>FACT</from>
       <to>Values conversion</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Values conversion</from>
-      <to>Modified JavaScript value 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Modified JavaScript value 2</from>
-      <to>FACT Access</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block until DIM_TIME Access finish</from>
-      <to>FACT</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -566,6 +521,51 @@
     <hop>
       <from>If field value is null</from>
       <to>CUSTOMERS Access</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Values conversion</from>
+      <to>Modified JavaScript value 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>TimeStamp to Date</from>
+      <to>Block until CUSTOMERS Access finish</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Block until CUSTOMERS Access finish</from>
+      <to>ORDERS Access</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modified JavaScript value</from>
+      <to>Block until ORDERS Access finish</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Block until ORDERS Access finish</from>
+      <to>PRODUCTS Access </to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>TIME_ID conversion</from>
+      <to>Block until PRODUCTS Access finish</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Block until PRODUCTS Access finish</from>
+      <to>DIM_TIME Access</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modified JavaScript value 2</from>
+      <to>Block until DIM_TIME Access finish</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Block until DIM_TIME Access finish</from>
+      <to>FACT Access</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -595,7 +595,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
+      <xloc>880</xloc>
       <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
@@ -626,7 +626,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
+      <xloc>1024</xloc>
       <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
@@ -657,7 +657,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
+      <xloc>976</xloc>
       <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
@@ -688,7 +688,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
+      <xloc>864</xloc>
       <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1092,10 +1092,9 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
     </partitioning>
     <connection>Singapore_Connection</connection>
     <sql>SELECT 
+	ORDERFACT.ORDERNUMBER,
     ORDERFACT.CUSTOMERNUMBER,
-    CUSTOMERS.CUSTOMERNAME,
     ORDERFACT.PRODUCTCODE,
-    PRODUCTS.PRODUCTNAME,
     ORDERFACT.TIME_ID,
     SUM(ORDERFACT.PRICEEACH*ORDERFACT.QUANTITYORDERED) AS SALES,
     SUM(ORDERFACT.QUANTITYORDERED) AS QUANTITY
@@ -1104,7 +1103,7 @@ WHERE ORDERFACT.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER AND
 ORDERFACT.PRODUCTCODE = PRODUCTS.PRODUCTCODE AND
 ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
 CUSTOMERS.COUNTRY = 'Singapore'
-GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE, PRODUCTS.PRODUCTNAME, ORDERFACT.TIME_ID</sql>
+GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE, ORDERFACT.TIME_ID</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -1112,6 +1111,29 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
     <lazy_conversion_active>N</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>ORDERNUMBER</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>FACT</origin>
+        <comments>ORDERNUMBER</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_PT</date_format_locale>
+        <date_format_timezone>Europe/London</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
@@ -1138,57 +1160,11 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>CUSTOMERNAME</name>
-        <length>50</length>
-        <precision>-1</precision>
-        <origin>FACT</origin>
-        <comments>CUSTOMERNAME</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_PT</date_format_locale>
-        <date_format_timezone>Europe/London</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
         <name>PRODUCTCODE</name>
         <length>50</length>
         <precision>-1</precision>
         <origin>FACT</origin>
         <comments>PRODUCTCODE</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_PT</date_format_locale>
-        <date_format_timezone>Europe/London</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>PRODUCTNAME</name>
-        <length>70</length>
-        <precision>-1</precision>
-        <origin>FACT</origin>
-        <comments>PRODUCTNAME</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1316,8 +1292,84 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1088</xloc>
+      <xloc>1200</xloc>
       <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>If field value is null</name>
+    <type>IfNull</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <replaceAllByValue/>
+    <replaceAllMask/>
+    <selectFields>Y</selectFields>
+    <selectValuesType>N</selectValuesType>
+    <setEmptyStringAll>N</setEmptyStringAll>
+    <valuetypes>
+      </valuetypes>
+    <fields>
+      <field>
+        <name>CUSTOMERNUMBER</name>
+        <value/>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>CUSTOMERNAME</name>
+        <value/>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>PHONE</name>
+        <value/>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>CITY</name>
+        <value/>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>STATE</name>
+        <value>N/A</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>POSTALCODE</name>
+        <value/>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>COUNTRY</name>
+        <value/>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1370,8 +1422,8 @@ var MSRP = MSRP_USD * 1.3316;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>913</xloc>
-      <yloc>367</yloc>
+      <xloc>752</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1397,16 +1449,7 @@ var MSRP = MSRP_USD * 1.3316;
 </jsScript_script>
       </jsScript>
     </jsScripts>
-    <fields>
-      <field>
-        <name>SALES</name>
-        <rename>SALES</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
+    <fields>    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1416,7 +1459,7 @@ var MSRP = MSRP_USD * 1.3316;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>912</xloc>
+      <xloc>752</xloc>
       <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2000,7 +2043,7 @@ CUSTOMERS.COUNTRY = 'Singapore'
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1088</xloc>
+      <xloc>1184</xloc>
       <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2237,27 +2280,47 @@ CUSTOMERS.COUNTRY = 'Singapore'
     </partitioning>
     <fields>
       <field>
-        <name>CUSTOMERNUMBER</name>
+        <name>ORDERNUMBER</name>
+        <rename/>
       </field>
       <field>
-        <name>CUSTOMERNAME</name>
+        <name>CUSTOMERNUMBER</name>
+        <rename/>
       </field>
       <field>
         <name>PRODUCTCODE</name>
-      </field>
-      <field>
-        <name>PRODUCTNAME</name>
+        <rename/>
       </field>
       <field>
         <name>TIME_ID</name>
+        <rename/>
       </field>
       <field>
         <name>SALES</name>
+        <rename/>
       </field>
       <field>
         <name>QUANTITY</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>ORDERNUMBER</name>
+        <rename>ORDERNUMBER</rename>
+        <type>None</type>
+        <length>9</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
       <meta>
         <name>CUSTOMERNUMBER</name>
         <rename>CUSTOMERNUMBER</rename>
@@ -2276,44 +2339,10 @@ CUSTOMERS.COUNTRY = 'Singapore'
         <storage_type/>
       </meta>
       <meta>
-        <name>CUSTOMERNAME</name>
-        <rename>CUSTOMERNAME</rename>
-        <type>None</type>
-        <length>50</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
         <name>PRODUCTCODE</name>
         <rename>PRODUCTCODE</rename>
         <type>None</type>
         <length>50</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>PRODUCTNAME</name>
-        <rename>PRODUCTNAME</rename>
-        <type>None</type>
-        <length>70</length>
         <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
@@ -2345,8 +2374,8 @@ CUSTOMERS.COUNTRY = 'Singapore'
       </meta>
       <meta>
         <name>SALES</name>
-        <rename>SALES</rename>
-        <type>Integer</type>
+        <rename>SALES_USD</rename>
+        <type>Number</type>
         <length>56</length>
         <precision>4</precision>
         <conversion_mask/>
@@ -2389,82 +2418,6 @@ CUSTOMERS.COUNTRY = 'Singapore'
     <GUI>
       <xloc>544</xloc>
       <yloc>528</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>If field value is null</name>
-    <type>IfNull</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <replaceAllByValue/>
-    <replaceAllMask/>
-    <selectFields>Y</selectFields>
-    <selectValuesType>N</selectValuesType>
-    <setEmptyStringAll>N</setEmptyStringAll>
-    <valuetypes>
-      </valuetypes>
-    <fields>
-      <field>
-        <name>CUSTOMERNUMBER</name>
-        <value/>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>CUSTOMERNAME</name>
-        <value/>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>PHONE</name>
-        <value/>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>CITY</name>
-        <value/>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>STATE</name>
-        <value>N/A</value>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>POSTALCODE</name>
-        <value/>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>COUNTRY</name>
-        <value/>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>592</xloc>
-      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
