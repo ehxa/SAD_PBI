@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Japan</name>
+    <name>General</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -428,16 +428,16 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2024/03/03 16:15:07.133</created_date>
+    <created_date>2024/03/09 22:03:12.423</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2024/03/03 16:15:07.133</modified_date>
+    <modified_date>2024/03/09 22:03:12.423</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>Japan_Connection</name>
+    <name>Connection_General</name>
     <server>localhost</server>
     <type>HYPERSONIC</type>
     <access>Native</access>
@@ -489,58 +489,8 @@
   </connection>
   <order>
     <hop>
-      <from>ORDERS</from>
-      <to>TimeStamp to Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>TimeStamp to Date</from>
-      <to>Block until CUSTOMERS Writer finish</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Block until CUSTOMERS Writer finish</from>
       <to>ORDERS Writer</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>CUSTOMERS</from>
-      <to>STATE to PREFECTURE</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>STATE to PREFECTURE</from>
-      <to>CUSTOMERS Writer</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>PRODUCTS</from>
-      <to>PRICES to PRICES_USD</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block until ORDERS Writer finish</from>
-      <to>PRODUCTS WRITER</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DIM_TIME</from>
-      <to>TIME_ID conversion</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>TIME_ID conversion</from>
-      <to>Block until PRODUCTS Writer finish</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block until PRODUCTS Writer finish</from>
-      <to>DIM_TIME Writer</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FACT</from>
-      <to>Values conversion</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -549,27 +499,37 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>PRICES to PRICES_USD</from>
-      <to>JSON input</to>
+      <from>Block until ORDERS Writer finish</from>
+      <to>PRODUCTS Writer</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Values conversion</from>
-      <to>JSON input 2</to>
+      <from>Block until PRODUCTS Writer finish</from>
+      <to>DIM_TIME Writer</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JSON input</from>
-      <to>Calculator</to>
+      <from>CUSTOMERS</from>
+      <to>CUSTOMERS Writer</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculator</from>
+      <from>ORDERS</from>
+      <to>Block until CUSTOMERS Writer finish</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>PRODUCTS</from>
       <to>Block until ORDERS Writer finish</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JSON input 2</from>
+      <from>DIM_TIME</from>
+      <to>Block until PRODUCTS Writer finish</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FACT</from>
       <to>Block until DIM_TIME Writer finish</to>
       <enabled>Y</enabled>
     </hop>
@@ -601,7 +561,7 @@
     </remotesteps>
     <GUI>
       <xloc>800</xloc>
-      <yloc>176</yloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -631,8 +591,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>416</yloc>
+      <xloc>1008</xloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -662,8 +622,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>256</yloc>
+      <xloc>1008</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -693,8 +653,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>816</xloc>
-      <yloc>336</yloc>
+      <xloc>800</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -709,7 +669,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Japan_Connection</connection>
+    <connection>Connection_General</connection>
     <sql>SELECT DISTINCT
 	CUSTOMERNUMBER,
 	CUSTOMERNAME,
@@ -719,9 +679,7 @@
 	POSTALCODE,
 	COUNTRY
 FROM CUSTOMERS, ORDERFACT 
-WHERE ORDERFACT.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER AND
-CUSTOMERS.COUNTRY = 'Japan'
-</sql>
+WHERE ORDERFACT.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -900,8 +858,8 @@ CUSTOMERS.COUNTRY = 'Japan'
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
-      <yloc>80</yloc>
+      <xloc>464</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -929,7 +887,7 @@ CUSTOMERS.COUNTRY = 'Japan'
     <appendLines>N</appendLines>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>C:\Users\cande\Documents\GitHub\SAD_PBI\Output\Japan\Japan</name>
+      <name>Z:\Documents\GitHub\SAD_PBI\Output\General\CUSTOMERS_General</name>
       <extention>xlsx</extention>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
       <split>N</split>
@@ -937,7 +895,7 @@ CUSTOMERS.COUNTRY = 'Japan'
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>CUSTOMERS</sheetname>
+      <sheetname>CUSTOMERS_General</sheetname>
       <autosizecolums>Y</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
@@ -1004,10 +962,10 @@ CUSTOMERS.COUNTRY = 'Japan'
         <hyperlinkField/>
       </field>
       <field>
-        <name>PREFECTURE</name>
+        <name>STATE</name>
         <type>String</type>
         <format/>
-        <title>PREFECTURE</title>
+        <title>STATE</title>
         <titleStyleCell/>
         <styleCell/>
         <commentField/>
@@ -1049,64 +1007,8 @@ CUSTOMERS.COUNTRY = 'Japan'
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1264</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Calculator</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>BUYPRICE</field_name>
-      <calc_type>MULTIPLY</calc_type>
-      <field_a>BUYPRICE_USD</field_a>
-      <field_b>JPY_RATE</field_b>
-      <field_c/>
-      <value_type>Number</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>MRSP</field_name>
-      <calc_type>MULTIPLY</calc_type>
-      <field_a>MSRP_USD</field_a>
-      <field_b>JPY_RATE</field_b>
-      <field_c/>
-      <value_type>Number</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>896</xloc>
-      <yloc>256</yloc>
+      <xloc>1440</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1121,7 +1023,7 @@ CUSTOMERS.COUNTRY = 'Japan'
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Japan_Connection</connection>
+    <connection>Connection_General</connection>
     <sql>SELECT DISTINCT
 	TIME_ID, 
 	MONTH_ID,
@@ -1129,8 +1031,8 @@ CUSTOMERS.COUNTRY = 'Japan'
 FROM DIM_TIME, ORDERFACT, CUSTOMERS
 WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
 	ORDERFACT.MONTH_ID = DIM_TIME.MONTH_ID AND
-	ORDERFACT.YEAR_ID = DIM_TIME.YEAR_ID AND
-	CUSTOMERS.COUNTRY = 'Japan'</sql>
+	ORDERFACT.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER AND
+	ORDERFACT.YEAR_ID = DIM_TIME.YEAR_ID</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -1217,8 +1119,8 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
-      <yloc>336</yloc>
+      <xloc>464</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1246,7 +1148,7 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
     <appendLines>N</appendLines>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>C:\Users\cande\Documents\GitHub\SAD_PBI\Output\Japan\Japan</name>
+      <name>Z:\Documents\GitHub\SAD_PBI\Output\General\DIM_TIME_General</name>
       <extention>xlsx</extention>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
       <split>N</split>
@@ -1254,7 +1156,7 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>DIM_TIME</sheetname>
+      <sheetname>DIM_TIME_General</sheetname>
       <autosizecolums>N</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
@@ -1272,6 +1174,42 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       <hidden>N</hidden>
     </template>
     <fields>
+      <field>
+        <name>TIME_ID</name>
+        <type>String</type>
+        <format/>
+        <title>TIME_ID</title>
+        <titleStyleCell/>
+        <styleCell/>
+        <commentField/>
+        <commentAuthorField/>
+        <formula>N</formula>
+        <hyperlinkField/>
+      </field>
+      <field>
+        <name>MONTH_ID</name>
+        <type>Integer</type>
+        <format/>
+        <title>MONTH_ID</title>
+        <titleStyleCell/>
+        <styleCell/>
+        <commentField/>
+        <commentAuthorField/>
+        <formula>N</formula>
+        <hyperlinkField/>
+      </field>
+      <field>
+        <name>YEAR_ID</name>
+        <type>Integer</type>
+        <format/>
+        <title>YEAR_ID</title>
+        <titleStyleCell/>
+        <styleCell/>
+        <commentField/>
+        <commentAuthorField/>
+        <formula>N</formula>
+        <hyperlinkField/>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1282,8 +1220,8 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1248</xloc>
-      <yloc>336</yloc>
+      <xloc>1440</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1298,21 +1236,19 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Japan_Connection</connection>
+    <connection>Connection_General</connection>
     <sql>SELECT 
+	ORDERFACT.ORDERNUMBER,
     ORDERFACT.CUSTOMERNUMBER,
-    CUSTOMERS.CUSTOMERNAME,
     ORDERFACT.PRODUCTCODE,
-    PRODUCTS.PRODUCTNAME,
     ORDERFACT.TIME_ID,
     SUM(ORDERFACT.PRICEEACH*ORDERFACT.QUANTITYORDERED) AS SALES,
     SUM(ORDERFACT.QUANTITYORDERED) AS QUANTITY
 FROM ORDERFACT, CUSTOMERS, PRODUCTS, DIM_TIME
 WHERE ORDERFACT.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER AND
 ORDERFACT.PRODUCTCODE = PRODUCTS.PRODUCTCODE AND
-ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
-CUSTOMERS.COUNTRY = 'Japan'
-GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE, PRODUCTS.PRODUCTNAME, ORDERFACT.TIME_ID</sql>
+ORDERFACT.TIME_ID = DIM_TIME.TIME_ID
+GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE, ORDERFACT.TIME_ID</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -1320,6 +1256,29 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
     <lazy_conversion_active>N</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>ORDERNUMBER</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>FACT</origin>
+        <comments>ORDERNUMBER</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_PT</date_format_locale>
+        <date_format_timezone>Europe/London</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
@@ -1346,57 +1305,11 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>CUSTOMERNAME</name>
-        <length>50</length>
-        <precision>-1</precision>
-        <origin>FACT</origin>
-        <comments>CUSTOMERNAME</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_PT</date_format_locale>
-        <date_format_timezone>Europe/London</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
         <name>PRODUCTCODE</name>
         <length>50</length>
         <precision>-1</precision>
         <origin>FACT</origin>
         <comments>PRODUCTCODE</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_PT</date_format_locale>
-        <date_format_timezone>Europe/London</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>PRODUCTNAME</name>
-        <length>70</length>
-        <precision>-1</precision>
-        <origin>FACT</origin>
-        <comments>PRODUCTNAME</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1491,8 +1404,8 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
-      <yloc>416</yloc>
+      <xloc>464</xloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1520,7 +1433,7 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
     <appendLines>N</appendLines>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>C:\Users\cande\Documents\GitHub\SAD_PBI\Output\Japan\Japan</name>
+      <name>Z:\Documents\GitHub\SAD_PBI\Output\General\FACT_General</name>
       <extention>xlsx</extention>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
       <split>N</split>
@@ -1528,7 +1441,7 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>FACT</sheetname>
+      <sheetname>FACT_General</sheetname>
       <autosizecolums>Y</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
@@ -1607,10 +1520,10 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
         <hyperlinkField/>
       </field>
       <field>
-        <name>QUANTITY</name>
-        <type>Integer</type>
+        <name>SALES</name>
+        <type>BigNumber</type>
         <format/>
-        <title>QUANTITY</title>
+        <title>SALES</title>
         <titleStyleCell/>
         <styleCell/>
         <commentField/>
@@ -1619,10 +1532,10 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
         <hyperlinkField/>
       </field>
       <field>
-        <name>SALES</name>
-        <type>Number</type>
-        <format>#,##0</format>
-        <title>SALES</title>
+        <name>QUANTITY</name>
+        <type>Integer</type>
+        <format/>
+        <title>QUANTITY</title>
         <titleStyleCell/>
         <styleCell/>
         <commentField/>
@@ -1641,149 +1554,7 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
     </remotesteps>
     <GUI>
       <xloc>1440</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>JSON input</name>
-    <type>JsonInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>Y</ignoreMissingPath>
-    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
-    <includeNulls>N</includeNulls>
-    <rownum_field/>
-    <file>
-      <name>Z:\Documents\GitHub\SAD_PBI\Input\Exchange.json</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>JPY_RATE</name>
-        <path>$.conversion_rates.JPY</path>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>N</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField/>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>JSON input 2</name>
-    <type>JsonInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>Y</ignoreMissingPath>
-    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
-    <includeNulls>N</includeNulls>
-    <rownum_field/>
-    <file>
-      <name>Z:\Documents\GitHub\SAD_PBI\Input\Exchange.json</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>JPY_RATE</name>
-        <path>$.conversion_rates.JPY</path>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>N</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField/>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>416</yloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1798,7 +1569,7 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Japan_Connection</connection>
+    <connection>Connection_General</connection>
     <sql>SELECT DISTINCT
 	ORDERNUMBER,
 	ORDERDATE,
@@ -1808,8 +1579,7 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
 	CUSTOMERNUMBER
 FROM ORDERS, ORDERFACT, CUSTOMERS
 WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
-	ORDERFACT.CUSTOMERNUMBER = ORDERS.CUSTOMERNUMBER AND
-	CUSTOMERS.COUNTRY = 'Japan'</sql>
+	ORDERS.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -1965,8 +1735,8 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
-      <yloc>176</yloc>
+      <xloc>464</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1994,7 +1764,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
     <appendLines>N</appendLines>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>C:\Users\cande\Documents\GitHub\SAD_PBI\Output\Japan\Japan</name>
+      <name>Z:\Documents\GitHub\SAD_PBI\Output\General\ORDERS_General</name>
       <extention>xlsx</extention>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
       <split>N</split>
@@ -2002,7 +1772,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>ORDERS</sheetname>
+      <sheetname>ORDERS_General</sheetname>
       <autosizecolums>Y</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
@@ -2034,7 +1804,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       </field>
       <field>
         <name>ORDERDATE</name>
-        <type>Date</type>
+        <type>Timestamp</type>
         <format/>
         <title>ORDERDATE</title>
         <titleStyleCell/>
@@ -2046,7 +1816,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       </field>
       <field>
         <name>REQUIREDDATE</name>
-        <type>Date</type>
+        <type>Timestamp</type>
         <format/>
         <title>REQUIREDDATE</title>
         <titleStyleCell/>
@@ -2058,7 +1828,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       </field>
       <field>
         <name>SHIPPEDDATE</name>
-        <type>Date</type>
+        <type>Timestamp</type>
         <format/>
         <title>SHIPPEDDATE</title>
         <titleStyleCell/>
@@ -2102,94 +1872,8 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1248</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>PRICES to PRICES_USD</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>PRODUCTCODE</name>
-      </field>
-      <field>
-        <name>PRODUCTNAME</name>
-      </field>
-      <field>
-        <name>PRODUCTLINE</name>
-      </field>
-      <field>
-        <name>PRODUCTSCALE</name>
-      </field>
-      <field>
-        <name>PRODUCTVENDOR</name>
-      </field>
-      <field>
-        <name>QUANTITYINSTOCK</name>
-      </field>
-      <field>
-        <name>BUYPRICE</name>
-      </field>
-      <field>
-        <name>MSRP</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>BUYPRICE</name>
-        <rename>BUYPRICE_USD</rename>
-        <type>None</type>
-        <length>17</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>MSRP</name>
-        <rename>MSRP_USD</rename>
-        <type>None</type>
-        <length>17</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>432</xloc>
-      <yloc>256</yloc>
+      <xloc>1440</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2204,7 +1888,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Japan_Connection</connection>
+    <connection>Connection_General</connection>
     <sql>SELECT DISTINCT
 	PRODUCTCODE, 
 	PRODUCTNAME,
@@ -2216,8 +1900,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
 	MSRP
 FROM PRODUCTS, ORDERFACT, CUSTOMERS
 WHERE ORDERFACT.PRODUCTCODE = PRODUCTS.PRODUCTCODE AND
-ORDERFACT.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER AND
-CUSTOMERS.COUNTRY = 'Japan'	
+ORDERFACT.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -2420,13 +2103,13 @@ CUSTOMERS.COUNTRY = 'Japan'
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
-      <yloc>256</yloc>
+      <xloc>464</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>PRODUCTS WRITER</name>
+    <name>PRODUCTS Writer</name>
     <type>TypeExitExcelWriterStep</type>
     <description/>
     <distribute>Y</distribute>
@@ -2449,7 +2132,7 @@ CUSTOMERS.COUNTRY = 'Japan'
     <appendLines>N</appendLines>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>C:\Users\cande\Documents\GitHub\SAD_PBI\Output\Japan\Japan</name>
+      <name>Z:\Documents\GitHub\SAD_PBI\Output\General\PRODUCTS_General</name>
       <extention>xlsx</extention>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
       <split>N</split>
@@ -2457,7 +2140,7 @@ CUSTOMERS.COUNTRY = 'Japan'
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>PRODUCTS</sheetname>
+      <sheetname>PRODUCTS_General</sheetname>
       <autosizecolums>Y</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
@@ -2548,44 +2231,8 @@ CUSTOMERS.COUNTRY = 'Japan'
         <hyperlinkField/>
       </field>
       <field>
-        <name>BUYPRICE_USD</name>
-        <type>Integer</type>
-        <format/>
-        <title>BUYPRICE_USD</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>MSRP_USD</name>
-        <type>Integer</type>
-        <format/>
-        <title>MSRP_USD</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>JPY_RATE</name>
-        <type>Number</type>
-        <format/>
-        <title>JPY_RATE</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
         <name>BUYPRICE</name>
-        <type>Number</type>
+        <type>Integer</type>
         <format/>
         <title>BUYPRICE</title>
         <titleStyleCell/>
@@ -2596,10 +2243,10 @@ CUSTOMERS.COUNTRY = 'Japan'
         <hyperlinkField/>
       </field>
       <field>
-        <name>MRSP</name>
-        <type>Number</type>
+        <name>MSRP</name>
+        <type>Integer</type>
         <format/>
-        <title>MRSP</title>
+        <title>MSRP</title>
         <titleStyleCell/>
         <styleCell/>
         <commentField/>
@@ -2618,325 +2265,7 @@ CUSTOMERS.COUNTRY = 'Japan'
     </remotesteps>
     <GUI>
       <xloc>1440</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>STATE to PREFECTURE</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>CUSTOMERNUMBER</name>
-      </field>
-      <field>
-        <name>CUSTOMERNAME</name>
-      </field>
-      <field>
-        <name>PHONE</name>
-      </field>
-      <field>
-        <name>CITY</name>
-      </field>
-      <field>
-        <name>STATE</name>
-        <rename>PREFECTURE</rename>
-      </field>
-      <field>
-        <name>POSTALCODE</name>
-      </field>
-      <field>
-        <name>COUNTRY</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>432</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>TIME_ID conversion</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>TIME_ID</name>
-      </field>
-      <field>
-        <name>MONTH_ID</name>
-      </field>
-      <field>
-        <name>YEAR_ID</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>TIME_ID</name>
-        <rename>TIME_ID</rename>
-        <type>String</type>
-        <length>10</length>
-        <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>MONTH_ID</name>
-        <rename>MONTH_ID</rename>
-        <type>None</type>
-        <length>9</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>YEAR_ID</name>
-        <rename>YEAR_ID</rename>
-        <type>None</type>
-        <length>9</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>432</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>TimeStamp to Date</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>ORDERNUMBER</name>
-      </field>
-      <field>
-        <name>ORDERDATE</name>
-      </field>
-      <field>
-        <name>REQUIREDDATE</name>
-      </field>
-      <field>
-        <name>SHIPPEDDATE</name>
-      </field>
-      <field>
-        <name>STATUS</name>
-      </field>
-      <field>
-        <name>CUSTOMERNUMBER</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>ORDERDATE</name>
-        <rename>ORDERDATE</rename>
-        <type>Date</type>
-        <length>6</length>
-        <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>REQUIREDDATE</name>
-        <rename>REQUIREDDATE</rename>
-        <type>Date</type>
-        <length>6</length>
-        <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>SHIPPEDDATE</name>
-        <rename>SHIPPEDDATE</rename>
-        <type>Date</type>
-        <length>6</length>
-        <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>432</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Values conversion</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>CUSTOMERNUMBER</name>
-      </field>
-      <field>
-        <name>CUSTOMERNAME</name>
-      </field>
-      <field>
-        <name>PRODUCTCODE</name>
-      </field>
-      <field>
-        <name>PRODUCTNAME</name>
-      </field>
-      <field>
-        <name>TIME_ID</name>
-      </field>
-      <field>
-        <name>SALES</name>
-      </field>
-      <field>
-        <name>QUANTITY</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>TIME_ID</name>
-        <rename>TIME_ID</rename>
-        <type>String</type>
-        <length>10</length>
-        <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>SALES</name>
-        <rename>SALES_USD</rename>
-        <type>None</type>
-        <length>56</length>
-        <precision>4</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>432</xloc>
-      <yloc>416</yloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
