@@ -520,7 +520,7 @@
     </hop>
     <hop>
       <from>Block until ORDERS Writer finish</from>
-      <to>PRODUCTS WRITER</to>
+      <to>PRODUCTS Writer</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -2300,7 +2300,7 @@ CUSTOMERS.COUNTRY = 'Japan'
     </GUI>
   </step>
   <step>
-    <name>PRODUCTS WRITER</name>
+    <name>PRODUCTS Writer</name>
     <type>TypeExitExcelWriterStep</type>
     <description/>
     <distribute>Y</distribute>
