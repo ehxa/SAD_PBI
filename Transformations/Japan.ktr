@@ -1175,7 +1175,7 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
     </partitioning>
     <header>Y</header>
     <footer>N</footer>
-    <makeSheetActive>Y</makeSheetActive>
+    <makeSheetActive>N</makeSheetActive>
     <startingCell>A1</startingCell>
     <appendOmitHeader>N</appendOmitHeader>
     <appendOffset>0</appendOffset>
@@ -1194,14 +1194,14 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>Japan</sheetname>
+      <sheetname>DIM_TIME</sheetname>
       <autosizecolums>N</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
       <password>Encrypted </password>
       <protected_by/>
       <splitevery>0</splitevery>
-      <if_file_exists>new</if_file_exists>
+      <if_file_exists>reuse</if_file_exists>
       <if_sheet_exists>new</if_sheet_exists>
     </file>
     <template>
@@ -1444,7 +1444,7 @@ GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE,
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>FACT_Japan</sheetname>
+      <sheetname>FACT</sheetname>
       <autosizecolums>Y</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
@@ -1864,7 +1864,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>Japan</sheetname>
+      <sheetname>ORDERS</sheetname>
       <autosizecolums>Y</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
@@ -2319,7 +2319,7 @@ CUSTOMERS.COUNTRY = 'Japan'
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>Japan</sheetname>
+      <sheetname>PRODUCTS</sheetname>
       <autosizecolums>Y</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
@@ -2697,27 +2697,21 @@ CUSTOMERS.COUNTRY = 'Japan'
     <fields>
       <field>
         <name>ORDERNUMBER</name>
-        <rename/>
       </field>
       <field>
         <name>CUSTOMERNUMBER</name>
-        <rename/>
       </field>
       <field>
         <name>PRODUCTCODE</name>
-        <rename/>
       </field>
       <field>
         <name>TIME_ID</name>
-        <rename/>
       </field>
       <field>
         <name>SALES</name>
-        <rename/>
       </field>
       <field>
         <name>QUANTITY</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
