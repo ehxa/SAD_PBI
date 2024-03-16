@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Japan2</name>
+    <name>Japan</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -520,7 +520,7 @@
     </hop>
     <hop>
       <from>Block until ORDERS Writer finish</from>
-      <to>PRODUCTS WRITER</to>
+      <to>PRODUCTS Writer</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -550,26 +550,21 @@
     </hop>
     <hop>
       <from>PRICES to PRICES_USD</from>
-      <to>JSON input</to>
+      <to>Modified JavaScript value</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Values conversion</from>
-      <to>JSON input 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JSON input</from>
-      <to>Calculator</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Calculator</from>
+      <from>Modified JavaScript value</from>
       <to>Block until ORDERS Writer finish</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JSON input 2</from>
+      <from>Values conversion</from>
+      <to>Modified JavaScript value 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modified JavaScript value 2</from>
       <to>Block until DIM_TIME Writer finish</to>
       <enabled>Y</enabled>
     </hop>
@@ -662,7 +657,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
+      <xloc>1152</xloc>
       <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
@@ -693,7 +688,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>816</xloc>
+      <xloc>800</xloc>
       <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
@@ -929,7 +924,7 @@ CUSTOMERS.COUNTRY = 'Japan'
     <appendLines>N</appendLines>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>C:\Users\cande\Documents\GitHub\SAD_PBI\Output\Japan\Japan</name>
+      <name>Z:\Documents\GitHub\SAD_PBI\Output\Japan\Japan</name>
       <extention>xlsx</extention>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
       <split>N</split>
@@ -1055,62 +1050,6 @@ CUSTOMERS.COUNTRY = 'Japan'
     </GUI>
   </step>
   <step>
-    <name>Calculator</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>BUYPRICE</field_name>
-      <calc_type>MULTIPLY</calc_type>
-      <field_a>BUYPRICE_USD</field_a>
-      <field_b>JPY_RATE</field_b>
-      <field_c/>
-      <value_type>Number</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>MRSP</field_name>
-      <calc_type>MULTIPLY</calc_type>
-      <field_a>MSRP_USD</field_a>
-      <field_b>JPY_RATE</field_b>
-      <field_c/>
-      <value_type>Number</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>896</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>DIM_TIME</name>
     <type>TableInput</type>
     <description/>
@@ -1130,6 +1069,7 @@ FROM DIM_TIME, ORDERFACT, CUSTOMERS
 WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
 	ORDERFACT.MONTH_ID = DIM_TIME.MONTH_ID AND
 	ORDERFACT.YEAR_ID = DIM_TIME.YEAR_ID AND
+	ORDERFACT.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER AND
 	CUSTOMERS.COUNTRY = 'Japan'</sql>
     <limit>0</limit>
     <lookup/>
@@ -1246,7 +1186,7 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
     <appendLines>N</appendLines>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>C:\Users\cande\Documents\GitHub\SAD_PBI\Output\Japan\Japan</name>
+      <name>Z:\Documents\GitHub\SAD_PBI\Output\Japan\Japan</name>
       <extention>xlsx</extention>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
       <split>N</split>
@@ -1254,7 +1194,7 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>DIM_TIME</sheetname>
+      <sheetname>Japan</sheetname>
       <autosizecolums>N</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
@@ -1282,7 +1222,7 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1248</xloc>
+      <xloc>1264</xloc>
       <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1300,10 +1240,9 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
     </partitioning>
     <connection>Japan_Connection</connection>
     <sql>SELECT 
+	ORDERFACT.ORDERNUMBER,
     ORDERFACT.CUSTOMERNUMBER,
-    CUSTOMERS.CUSTOMERNAME,
     ORDERFACT.PRODUCTCODE,
-    PRODUCTS.PRODUCTNAME,
     ORDERFACT.TIME_ID,
     SUM(ORDERFACT.PRICEEACH*ORDERFACT.QUANTITYORDERED) AS SALES,
     SUM(ORDERFACT.QUANTITYORDERED) AS QUANTITY
@@ -1312,7 +1251,7 @@ WHERE ORDERFACT.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER AND
 ORDERFACT.PRODUCTCODE = PRODUCTS.PRODUCTCODE AND
 ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
 CUSTOMERS.COUNTRY = 'Japan'
-GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE, PRODUCTS.PRODUCTNAME, ORDERFACT.TIME_ID</sql>
+GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE, ORDERFACT.TIME_ID</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -1320,6 +1259,29 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
     <lazy_conversion_active>N</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>ORDERNUMBER</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>FACT</origin>
+        <comments>ORDERNUMBER</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_PT</date_format_locale>
+        <date_format_timezone>Europe/London</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
@@ -1346,57 +1308,11 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>CUSTOMERNAME</name>
-        <length>50</length>
-        <precision>-1</precision>
-        <origin>FACT</origin>
-        <comments>CUSTOMERNAME</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_PT</date_format_locale>
-        <date_format_timezone>Europe/London</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
         <name>PRODUCTCODE</name>
         <length>50</length>
         <precision>-1</precision>
         <origin>FACT</origin>
         <comments>PRODUCTCODE</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_PT</date_format_locale>
-        <date_format_timezone>Europe/London</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>PRODUCTNAME</name>
-        <length>70</length>
-        <precision>-1</precision>
-        <origin>FACT</origin>
-        <comments>PRODUCTNAME</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1520,7 +1436,7 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
     <appendLines>N</appendLines>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>C:\Users\cande\Documents\GitHub\SAD_PBI\Output\Japan\Japan</name>
+      <name>Z:\Documents\GitHub\SAD_PBI\Output\Japan\Japan</name>
       <extention>xlsx</extention>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
       <split>N</split>
@@ -1528,7 +1444,7 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>FACT</sheetname>
+      <sheetname>FACT_Japan</sheetname>
       <autosizecolums>Y</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
@@ -1559,34 +1475,10 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
         <hyperlinkField/>
       </field>
       <field>
-        <name>CUSTOMERNAME</name>
-        <type>String</type>
-        <format/>
-        <title>CUSTOMERNAME</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
         <name>PRODUCTCODE</name>
         <type>String</type>
         <format/>
         <title>PRODUCTCODE</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>PRODUCTNAME</name>
-        <type>String</type>
-        <format/>
-        <title>PRODUCTNAME</title>
         <titleStyleCell/>
         <styleCell/>
         <commentField/>
@@ -1607,6 +1499,18 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
         <hyperlinkField/>
       </field>
       <field>
+        <name>SALES_USD</name>
+        <type>BigNumber</type>
+        <format/>
+        <title>SALES_USD</title>
+        <titleStyleCell/>
+        <styleCell/>
+        <commentField/>
+        <commentAuthorField/>
+        <formula>N</formula>
+        <hyperlinkField/>
+      </field>
+      <field>
         <name>QUANTITY</name>
         <type>Integer</type>
         <format/>
@@ -1619,10 +1523,10 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
         <hyperlinkField/>
       </field>
       <field>
-        <name>SALES</name>
+        <name>BUYPRICE</name>
         <type>Number</type>
-        <format>#,##0</format>
-        <title>SALES</title>
+        <format>00000000000000.00</format>
+        <title>BUYPRICE</title>
         <titleStyleCell/>
         <styleCell/>
         <commentField/>
@@ -1646,8 +1550,8 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
     </GUI>
   </step>
   <step>
-    <name>JSON input</name>
-    <type>JsonInput</type>
+    <name>Modified JavaScript value</name>
+    <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1656,52 +1560,35 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>Y</ignoreMissingPath>
-    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
-    <includeNulls>N</includeNulls>
-    <rownum_field/>
-    <file>
-      <name>Z:\Documents\GitHub\SAD_PBI\Input\Exchange.json</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var BUYPRICE = BUYPRICE_USD * 147.1449;
+var MSRP = MSRP_USD * 	147.1449;
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
     <fields>
       <field>
-        <name>JPY_RATE</name>
-        <path>$.conversion_rates.JPY</path>
+        <name>BUYPRICE</name>
+        <rename>BUYPRICE</rename>
         <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>MSRP</name>
+        <rename>MSRP</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
       </field>
     </fields>
-    <limit>0</limit>
-    <IsInFields>N</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField/>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1711,14 +1598,14 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>800</xloc>
       <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>JSON input 2</name>
-    <type>JsonInput</type>
+    <name>Modified JavaScript value 2</name>
+    <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1727,52 +1614,27 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>Y</ignoreMissingPath>
-    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
-    <includeNulls>N</includeNulls>
-    <rownum_field/>
-    <file>
-      <name>Z:\Documents\GitHub\SAD_PBI\Input\Exchange.json</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var BUYPRICE = SALES_USD * 147.1449;
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
     <fields>
       <field>
-        <name>JPY_RATE</name>
-        <path>$.conversion_rates.JPY</path>
+        <name>BUYPRICE</name>
+        <rename>BUYPRICE</rename>
         <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>N</replace>
       </field>
     </fields>
-    <limit>0</limit>
-    <IsInFields>N</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField/>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1782,7 +1644,7 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>800</xloc>
       <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1808,7 +1670,7 @@ GROUP BY ORDERFACT.CUSTOMERNUMBER, CUSTOMERS.CUSTOMERNAME, ORDERFACT.PRODUCTCODE
 	CUSTOMERNUMBER
 FROM ORDERS, ORDERFACT, CUSTOMERS
 WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
-	ORDERFACT.CUSTOMERNUMBER = ORDERS.CUSTOMERNUMBER AND
+	ORDERS.CUSTOMERNUMBER = CUSTOMERS.CUSTOMERNUMBER AND
 	CUSTOMERS.COUNTRY = 'Japan'</sql>
     <limit>0</limit>
     <lookup/>
@@ -1994,7 +1856,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
     <appendLines>N</appendLines>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>C:\Users\cande\Documents\GitHub\SAD_PBI\Output\Japan\Japan</name>
+      <name>Z:\Documents\GitHub\SAD_PBI\Output\Japan\Japan</name>
       <extention>xlsx</extention>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
       <split>N</split>
@@ -2002,7 +1864,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>ORDERS</sheetname>
+      <sheetname>Japan</sheetname>
       <autosizecolums>Y</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
@@ -2102,7 +1964,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1248</xloc>
+      <xloc>1264</xloc>
       <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2426,7 +2288,7 @@ CUSTOMERS.COUNTRY = 'Japan'
     </GUI>
   </step>
   <step>
-    <name>PRODUCTS WRITER</name>
+    <name>PRODUCTS Writer</name>
     <type>TypeExitExcelWriterStep</type>
     <description/>
     <distribute>Y</distribute>
@@ -2449,7 +2311,7 @@ CUSTOMERS.COUNTRY = 'Japan'
     <appendLines>N</appendLines>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>C:\Users\cande\Documents\GitHub\SAD_PBI\Output\Japan\Japan</name>
+      <name>Z:\Documents\GitHub\SAD_PBI\Output\Japan\Japan</name>
       <extention>xlsx</extention>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
       <split>N</split>
@@ -2457,7 +2319,7 @@ CUSTOMERS.COUNTRY = 'Japan'
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
       <date_time_format/>
-      <sheetname>PRODUCTS</sheetname>
+      <sheetname>Japan</sheetname>
       <autosizecolums>Y</autosizecolums>
       <stream_data>N</stream_data>
       <protect_sheet>N</protect_sheet>
@@ -2548,45 +2410,9 @@ CUSTOMERS.COUNTRY = 'Japan'
         <hyperlinkField/>
       </field>
       <field>
-        <name>BUYPRICE_USD</name>
-        <type>Integer</type>
-        <format/>
-        <title>BUYPRICE_USD</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>MSRP_USD</name>
-        <type>Integer</type>
-        <format/>
-        <title>MSRP_USD</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
-        <name>JPY_RATE</name>
-        <type>Number</type>
-        <format/>
-        <title>JPY_RATE</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
         <name>BUYPRICE</name>
         <type>Number</type>
-        <format/>
+        <format>#,##0</format>
         <title>BUYPRICE</title>
         <titleStyleCell/>
         <styleCell/>
@@ -2596,10 +2422,10 @@ CUSTOMERS.COUNTRY = 'Japan'
         <hyperlinkField/>
       </field>
       <field>
-        <name>MRSP</name>
+        <name>MSRP</name>
         <type>Number</type>
-        <format/>
-        <title>MRSP</title>
+        <format>#,##0</format>
+        <title>MSRP</title>
         <titleStyleCell/>
         <styleCell/>
         <commentField/>
@@ -2870,25 +2696,28 @@ CUSTOMERS.COUNTRY = 'Japan'
     </partitioning>
     <fields>
       <field>
-        <name>CUSTOMERNUMBER</name>
+        <name>ORDERNUMBER</name>
+        <rename/>
       </field>
       <field>
-        <name>CUSTOMERNAME</name>
+        <name>CUSTOMERNUMBER</name>
+        <rename/>
       </field>
       <field>
         <name>PRODUCTCODE</name>
-      </field>
-      <field>
-        <name>PRODUCTNAME</name>
+        <rename/>
       </field>
       <field>
         <name>TIME_ID</name>
+        <rename/>
       </field>
       <field>
         <name>SALES</name>
+        <rename/>
       </field>
       <field>
         <name>QUANTITY</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
