@@ -911,7 +911,7 @@ CUSTOMERS.COUNTRY = 'Singapore'
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\CUSTOMERS_Singapore.mdb</filename>
+    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\Singapore.mdb</filename>
     <table>CUSTOMERS</table>
     <truncate>Y</truncate>
     <create_file>Y</create_file>
@@ -1057,10 +1057,10 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\TIME_Singapore.mdb</filename>
+    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\Singapore.mdb</filename>
     <table>DIM_TIME</table>
     <truncate>Y</truncate>
-    <create_file>Y</create_file>
+    <create_file>N</create_file>
     <create_table>Y</create_table>
     <commit_size>1000</commit_size>
     <add_to_result_filenames>Y</add_to_result_filenames>
@@ -1275,10 +1275,10 @@ GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE,
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\FACT_Singapore.mdb</filename>
+    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\Singapore.mdb</filename>
     <table>FACT</table>
     <truncate>Y</truncate>
-    <create_file>Y</create_file>
+    <create_file>N</create_file>
     <create_table>Y</create_table>
     <commit_size>1000</commit_size>
     <add_to_result_filenames>Y</add_to_result_filenames>
@@ -1658,10 +1658,10 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\ORDERS_Singapore.mdb</filename>
+    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\Singapore.mdb</filename>
     <table>ORDERS</table>
     <truncate>Y</truncate>
-    <create_file>Y</create_file>
+    <create_file>N</create_file>
     <create_table>Y</create_table>
     <commit_size>1000</commit_size>
     <add_to_result_filenames>Y</add_to_result_filenames>
@@ -2026,10 +2026,10 @@ CUSTOMERS.COUNTRY = 'Singapore'
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\PRODUCTS_Singapore.mdb</filename>
+    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\Singapore.mdb</filename>
     <table>PRODUCTS</table>
     <truncate>Y</truncate>
-    <create_file>Y</create_file>
+    <create_file>N</create_file>
     <create_table>Y</create_table>
     <commit_size>1000</commit_size>
     <add_to_result_filenames>Y</add_to_result_filenames>
@@ -2281,27 +2281,21 @@ CUSTOMERS.COUNTRY = 'Singapore'
     <fields>
       <field>
         <name>ORDERNUMBER</name>
-        <rename/>
       </field>
       <field>
         <name>CUSTOMERNUMBER</name>
-        <rename/>
       </field>
       <field>
         <name>PRODUCTCODE</name>
-        <rename/>
       </field>
       <field>
         <name>TIME_ID</name>
-        <rename/>
       </field>
       <field>
         <name>SALES</name>
-        <rename/>
       </field>
       <field>
         <name>QUANTITY</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
