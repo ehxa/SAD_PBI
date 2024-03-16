@@ -506,7 +506,7 @@
     <hop>
       <from>Block until PRODUCTS Writer finish</from>
       <to>DIM_TIME Writer</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>CUSTOMERS</from>
