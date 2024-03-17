@@ -489,48 +489,8 @@
   </connection>
   <order>
     <hop>
-      <from>DIM_TIME</from>
-      <to>TIME_ID conversion</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>ORDERS</from>
-      <to>TimeStamp to Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>PRICES to PRICES_USD</from>
-      <to>Modified JavaScript value</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>PRODUCTS</from>
-      <to>PRICES to PRICES_USD</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FACT</from>
-      <to>Values conversion</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>CUSTOMERS</from>
       <to>If field value is null</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>If field value is null</from>
-      <to>CUSTOMERS Access</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Values conversion</from>
-      <to>Modified JavaScript value 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>TimeStamp to Date</from>
-      <to>Block until CUSTOMERS Access finish</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -539,8 +499,18 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Modified JavaScript value</from>
-      <to>Block until ORDERS Access finish</to>
+      <from>If field value is null</from>
+      <to>CUSTOMERS Access</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Block until DIM_TIME Access finish</from>
+      <to>FACT Access</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ORDERS</from>
+      <to>TimeStamp to Date</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -549,13 +519,33 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>TIME_ID conversion</from>
+      <from>Block until PRODUCTS Access finish</from>
+      <to>DIM_TIME Access</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DIM_TIME</from>
+      <to>TIME_ID conversion</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FACT</from>
+      <to>Values conversion</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modified JavaScript value 3</from>
       <to>Block until PRODUCTS Access finish</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Block until PRODUCTS Access finish</from>
-      <to>DIM_TIME Access</to>
+      <from>Modified JavaScript value</from>
+      <to>Block until ORDERS Access finish</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>TIME_ID conversion</from>
+      <to>Modified JavaScript value 3</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -564,8 +554,23 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Block until DIM_TIME Access finish</from>
-      <to>FACT Access</to>
+      <from>Values conversion</from>
+      <to>Modified JavaScript value 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>PRODUCTS</from>
+      <to>PRICES to PRICES_USD</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>PRICES to PRICES_USD</from>
+      <to>Modified JavaScript value</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>TimeStamp to Date</from>
+      <to>Block until CUSTOMERS Access finish</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -595,8 +600,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>880</xloc>
-      <yloc>288</yloc>
+      <xloc>800</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -613,7 +618,7 @@
     </partitioning>
     <steps>
       <step>
-        <name>CUSTOMERS Access</name>
+        <name>DIM_TIME Access</name>
         <CopyNr>0</CopyNr>
       </step>
     </steps>
@@ -626,8 +631,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1024</xloc>
-      <yloc>528</yloc>
+      <xloc>976</xloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -657,8 +662,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>368</yloc>
+      <xloc>992</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -675,7 +680,7 @@
     </partitioning>
     <steps>
       <step>
-        <name>CUSTOMERS Access</name>
+        <name>PRODUCTS Access </name>
         <CopyNr>0</CopyNr>
       </step>
     </steps>
@@ -688,8 +693,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>448</yloc>
+      <xloc>992</xloc>
+      <yloc>432</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -911,7 +916,7 @@ CUSTOMERS.COUNTRY = 'Singapore'
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\Singapore.mdb</filename>
+    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\Singapore_Output.mdb</filename>
     <table>CUSTOMERS</table>
     <truncate>Y</truncate>
     <create_file>Y</create_file>
@@ -1041,8 +1046,8 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       </output>
     </remotesteps>
     <GUI>
-      <xloc>289</xloc>
-      <yloc>447</yloc>
+      <xloc>288</xloc>
+      <yloc>432</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1057,14 +1062,14 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\Singapore.mdb</filename>
+    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\Singapore_Output.mdb</filename>
     <table>DIM_TIME</table>
     <truncate>Y</truncate>
     <create_file>N</create_file>
     <create_table>Y</create_table>
     <commit_size>1000</commit_size>
     <add_to_result_filenames>Y</add_to_result_filenames>
-    <do_not_open_newfile_init>N</do_not_open_newfile_init>
+    <do_not_open_newfile_init>Y</do_not_open_newfile_init>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1074,8 +1079,8 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1088</xloc>
-      <yloc>448</yloc>
+      <xloc>1216</xloc>
+      <yloc>432</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1260,7 +1265,7 @@ GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE,
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>528</yloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1275,14 +1280,14 @@ GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE,
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\Singapore.mdb</filename>
+    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\Singapore_Output.mdb</filename>
     <table>FACT</table>
     <truncate>Y</truncate>
     <create_file>N</create_file>
     <create_table>Y</create_table>
     <commit_size>1000</commit_size>
     <add_to_result_filenames>Y</add_to_result_filenames>
-    <do_not_open_newfile_init>N</do_not_open_newfile_init>
+    <do_not_open_newfile_init>Y</do_not_open_newfile_init>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1293,7 +1298,7 @@ GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE,
     </remotesteps>
     <GUI>
       <xloc>1200</xloc>
-      <yloc>528</yloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1368,7 +1373,7 @@ GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE,
       </output>
     </remotesteps>
     <GUI>
-      <xloc>592</xloc>
+      <xloc>672</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1423,7 +1428,7 @@ var MSRP = MSRP_USD * 1.3316;
     </remotesteps>
     <GUI>
       <xloc>752</xloc>
-      <yloc>368</yloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1445,11 +1450,39 @@ var MSRP = MSRP_USD * 1.3316;
         <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>var SALES = SALES * 1.3316;
+var newDate = TIME_ID.split('-');
+var TIME_ID = newDate[2] + '/' + newDate[1] + '/' + newDate[0];
+
 
 </jsScript_script>
       </jsScript>
     </jsScripts>
-    <fields>    </fields>
+    <fields>
+      <field>
+        <name>SALES</name>
+        <rename>SALES</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>newDate</name>
+        <rename>newDate</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>TIME_ID</name>
+        <rename>TIME_ID</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1460,7 +1493,55 @@ var MSRP = MSRP_USD * 1.3316;
     </remotesteps>
     <GUI>
       <xloc>752</xloc>
-      <yloc>528</yloc>
+      <yloc>512</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Modified JavaScript value 3</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var newDate = TIME_ID.split('-');
+var TIME_ID = newDate[2] + '/' + newDate[1] + '/' + newDate[0];
+
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>TIME_ID</name>
+        <rename>TIME_ID</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>752</xloc>
+      <yloc>432</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1642,8 +1723,8 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       </output>
     </remotesteps>
     <GUI>
-      <xloc>289</xloc>
-      <yloc>287</yloc>
+      <xloc>288</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1658,14 +1739,14 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\Singapore.mdb</filename>
+    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\Singapore_Output.mdb</filename>
     <table>ORDERS</table>
     <truncate>Y</truncate>
     <create_file>N</create_file>
     <create_table>Y</create_table>
     <commit_size>1000</commit_size>
     <add_to_result_filenames>Y</add_to_result_filenames>
-    <do_not_open_newfile_init>N</do_not_open_newfile_init>
+    <do_not_open_newfile_init>Y</do_not_open_newfile_init>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1676,7 +1757,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
     </remotesteps>
     <GUI>
       <xloc>1088</xloc>
-      <yloc>288</yloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1778,8 +1859,8 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       </output>
     </remotesteps>
     <GUI>
-      <xloc>545</xloc>
-      <yloc>367</yloc>
+      <xloc>544</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2010,8 +2091,8 @@ CUSTOMERS.COUNTRY = 'Singapore'
       </output>
     </remotesteps>
     <GUI>
-      <xloc>289</xloc>
-      <yloc>367</yloc>
+      <xloc>288</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2026,14 +2107,14 @@ CUSTOMERS.COUNTRY = 'Singapore'
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\Singapore.mdb</filename>
+    <filename>Z:\Documents\GitHub\SAD_PBI\Output\Singapore\Singapore_Output.mdb</filename>
     <table>PRODUCTS</table>
     <truncate>Y</truncate>
     <create_file>N</create_file>
     <create_table>Y</create_table>
     <commit_size>1000</commit_size>
     <add_to_result_filenames>Y</add_to_result_filenames>
-    <do_not_open_newfile_init>N</do_not_open_newfile_init>
+    <do_not_open_newfile_init>Y</do_not_open_newfile_init>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -2044,7 +2125,7 @@ CUSTOMERS.COUNTRY = 'Singapore'
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>368</yloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2076,7 +2157,7 @@ CUSTOMERS.COUNTRY = 'Singapore'
         <type>String</type>
         <length>10</length>
         <precision>-2</precision>
-        <conversion_mask>dd/MM/yyyy</conversion_mask>
+        <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -2090,7 +2171,7 @@ CUSTOMERS.COUNTRY = 'Singapore'
       <meta>
         <name>MONTH_ID</name>
         <rename>MONTH_ID</rename>
-        <type>Number</type>
+        <type>String</type>
         <length>9</length>
         <precision>0</precision>
         <conversion_mask/>
@@ -2107,7 +2188,7 @@ CUSTOMERS.COUNTRY = 'Singapore'
       <meta>
         <name>YEAR_ID</name>
         <rename>YEAR_ID</rename>
-        <type>Number</type>
+        <type>String</type>
         <length>9</length>
         <precision>0</precision>
         <conversion_mask/>
@@ -2131,8 +2212,8 @@ CUSTOMERS.COUNTRY = 'Singapore'
       </output>
     </remotesteps>
     <GUI>
-      <xloc>545</xloc>
-      <yloc>447</yloc>
+      <xloc>544</xloc>
+      <yloc>432</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2205,7 +2286,7 @@ CUSTOMERS.COUNTRY = 'Singapore'
         <name>ORDERDATE</name>
         <rename>ORDERDATE</rename>
         <type>Date</type>
-        <length>6</length>
+        <length>-2</length>
         <precision>-2</precision>
         <conversion_mask>dd/MM/yyyy</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
@@ -2222,7 +2303,7 @@ CUSTOMERS.COUNTRY = 'Singapore'
         <name>REQUIREDDATE</name>
         <rename>REQUIREDDATE</rename>
         <type>Date</type>
-        <length>6</length>
+        <length>-2</length>
         <precision>-2</precision>
         <conversion_mask>dd/MM/yyyy</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
@@ -2239,7 +2320,7 @@ CUSTOMERS.COUNTRY = 'Singapore'
         <name>SHIPPEDDATE</name>
         <rename>SHIPPEDDATE</rename>
         <type>Date</type>
-        <length>6</length>
+        <length>-2</length>
         <precision>-2</precision>
         <conversion_mask>dd/MM/yyyy</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
@@ -2262,8 +2343,8 @@ CUSTOMERS.COUNTRY = 'Singapore'
       </output>
     </remotesteps>
     <GUI>
-      <xloc>545</xloc>
-      <yloc>287</yloc>
+      <xloc>544</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2281,21 +2362,27 @@ CUSTOMERS.COUNTRY = 'Singapore'
     <fields>
       <field>
         <name>ORDERNUMBER</name>
+        <rename/>
       </field>
       <field>
         <name>CUSTOMERNUMBER</name>
+        <rename/>
       </field>
       <field>
         <name>PRODUCTCODE</name>
+        <rename/>
       </field>
       <field>
         <name>TIME_ID</name>
+        <rename/>
       </field>
       <field>
         <name>SALES</name>
+        <rename/>
       </field>
       <field>
         <name>QUANTITY</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -2352,7 +2439,7 @@ CUSTOMERS.COUNTRY = 'Singapore'
       <meta>
         <name>TIME_ID</name>
         <rename>TIME_ID</rename>
-        <type>None</type>
+        <type>String</type>
         <length>10</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -2368,7 +2455,7 @@ CUSTOMERS.COUNTRY = 'Singapore'
       </meta>
       <meta>
         <name>SALES</name>
-        <rename>SALES_USD</rename>
+        <rename>SALES</rename>
         <type>Number</type>
         <length>56</length>
         <precision>4</precision>
@@ -2411,7 +2498,7 @@ CUSTOMERS.COUNTRY = 'Singapore'
     </remotesteps>
     <GUI>
       <xloc>544</xloc>
-      <yloc>528</yloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

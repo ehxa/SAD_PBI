@@ -455,7 +455,7 @@
       </attribute>
       <attribute>
         <code>CUSTOM_URL</code>
-        <attribute>jdbc:sqlite:C:\Users\diogo\Documents\GitHub\SAD_PBI\MySQL\Export\usa_db.sqlite</attribute>
+        <attribute>jdbc:sqlite:Z:\Documents\GitHub\SAD_PBI\MySQL\Export\usa_db.sqlite</attribute>
       </attribute>
       <attribute>
         <code>DATABASE_DIALECT_ID</code>

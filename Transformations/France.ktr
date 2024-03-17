@@ -489,13 +489,8 @@
   </connection>
   <order>
     <hop>
-      <from>DIM_TIME</from>
-      <to>TIME_ID conversion</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>FACT</from>
-      <to>Values conversion</to>
+      <to>TIME_ID to Date and SALES to SALES_USD</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -514,11 +509,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Values conversion</from>
-      <to>Modified JavaScript value 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>TimeStamp to Date</from>
       <to>ORDERS CSV</to>
       <enabled>Y</enabled>
@@ -526,11 +516,6 @@
     <hop>
       <from>Modified JavaScript value</from>
       <to>PRODUCTS CSV</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>TIME_ID conversion</from>
-      <to>DIM_TIME CSV</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -546,6 +531,31 @@
     <hop>
       <from>If STATE value is null</from>
       <to>CUSTOMERS CSV</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>TIME_ID to Date and SALES to SALES_USD</from>
+      <to>TIME_ID Format conversion</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>TIME_ID Format conversion</from>
+      <to>Modified JavaScript value 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DIM_TIME</from>
+      <to>TIME_ID to Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>TIME_ID to Date</from>
+      <to>TIME_ID Format conversion 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>TIME_ID Format conversion 2</from>
+      <to>DIM_TIME CSV</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -794,7 +804,7 @@ CUSTOMERS.COUNTRY = 'France'
       <date_time_format/>
       <add_to_result_filenames>Y</add_to_result_filenames>
       <pad>N</pad>
-      <fast_dump>Y</fast_dump>
+      <fast_dump>N</fast_dump>
       <splitevery/>
     </file>
     <fields>
@@ -836,6 +846,18 @@ CUSTOMERS.COUNTRY = 'France'
       </field>
       <field>
         <name>CITY</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>50</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>STATE</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1023,7 +1045,7 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>Z:\Documents\GitHub\SAD_PBI\Output\France\TIME_France</name>
+      <name>Z:\Documents\GitHub\SAD_PBI\Output\France\DIM_TIME_France</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
       <extention>csv</extention>
@@ -1036,7 +1058,7 @@ WHERE ORDERFACT.TIME_ID = DIM_TIME.TIME_ID AND
       <date_time_format/>
       <add_to_result_filenames>Y</add_to_result_filenames>
       <pad>N</pad>
-      <fast_dump>Y</fast_dump>
+      <fast_dump>N</fast_dump>
       <splitevery/>
     </file>
     <fields>
@@ -1314,10 +1336,22 @@ GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE,
       <date_time_format/>
       <add_to_result_filenames>Y</add_to_result_filenames>
       <pad>N</pad>
-      <fast_dump>Y</fast_dump>
+      <fast_dump>N</fast_dump>
       <splitevery/>
     </file>
     <fields>
+      <field>
+        <name>ORDERNUMBER</name>
+        <type>Integer</type>
+        <format>####0;-####0</format>
+        <currency/>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>9</length>
+        <precision>0</precision>
+      </field>
       <field>
         <name>CUSTOMERNUMBER</name>
         <type>Integer</type>
@@ -1331,18 +1365,6 @@ GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE,
         <precision>0</precision>
       </field>
       <field>
-        <name>CUSTOMERNAME</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>50</length>
-        <precision>-1</precision>
-      </field>
-      <field>
         <name>PRODUCTCODE</name>
         <type>String</type>
         <format/>
@@ -1351,19 +1373,7 @@ GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE,
         <group/>
         <nullif/>
         <trim_type>none</trim_type>
-        <length>50</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>PRODUCTNAME</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>70</length>
+        <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
@@ -1437,44 +1447,8 @@ GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE,
       </valuetypes>
     <fields>
       <field>
-        <name>CUSTOMERNUMBER</name>
-        <value/>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>CUSTOMERNAME</name>
-        <value/>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>PHONE</name>
-        <value/>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>CITY</name>
-        <value/>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
         <name>STATE</name>
         <value>N/A</value>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>POSTALCODE</name>
-        <value/>
-        <mask/>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>COUNTRY</name>
-        <value/>
         <mask/>
         <set_empty_string>N</set_empty_string>
       </field>
@@ -1488,7 +1462,7 @@ GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE,
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
+      <xloc>944</xloc>
       <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1565,6 +1539,7 @@ var MSRP = MSRP_USD * 0.9142;
         <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>var SALES = SALES_USD * 0.9142;
+var PRODUCTCODE = PRODUCTCODE.trim();
 
 </jsScript_script>
       </jsScript>
@@ -1578,6 +1553,14 @@ var MSRP = MSRP_USD * 0.9142;
         <precision>2</precision>
         <replace>N</replace>
       </field>
+      <field>
+        <name>PRODUCTCODE</name>
+        <rename>PRODUCTCODE</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1588,7 +1571,7 @@ var MSRP = MSRP_USD * 0.9142;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1040</xloc>
+      <xloc>1312</xloc>
       <yloc>576</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1801,7 +1784,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>Z:\Documents\GitHub\SAD_PBI\Output\France\ORDERS_FRANCE</name>
+      <name>Z:\Documents\GitHub\SAD_PBI\Output\France\ORDERS_France</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
       <extention>csv</extention>
@@ -1814,7 +1797,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
       <date_time_format/>
       <add_to_result_filenames>Y</add_to_result_filenames>
       <pad>N</pad>
-      <fast_dump>Y</fast_dump>
+      <fast_dump>N</fast_dump>
       <splitevery/>
     </file>
     <fields>
@@ -1875,7 +1858,7 @@ WHERE ORDERFACT.ORDERNUMBER = ORDERS.ORDERNUMBER AND
         <group/>
         <nullif/>
         <trim_type>none</trim_type>
-        <length>15</length>
+        <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
@@ -2261,7 +2244,7 @@ CUSTOMERS.COUNTRY = 'France'
       <date_time_format/>
       <add_to_result_filenames>Y</add_to_result_filenames>
       <pad>N</pad>
-      <fast_dump>Y</fast_dump>
+      <fast_dump>N</fast_dump>
       <splitevery/>
     </file>
     <fields>
@@ -2377,7 +2360,70 @@ CUSTOMERS.COUNTRY = 'France'
     </GUI>
   </step>
   <step>
-    <name>TIME_ID conversion</name>
+    <name>TIME_ID Format conversion</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>ORDERNUMBER</name>
+      </field>
+      <field>
+        <name>CUSTOMERNUMBER</name>
+      </field>
+      <field>
+        <name>PRODUCTCODE</name>
+      </field>
+      <field>
+        <name>TIME_ID</name>
+      </field>
+      <field>
+        <name>SALES_USD</name>
+      </field>
+      <field>
+        <name>QUANTITY</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>TIME_ID</name>
+        <rename>TIME_ID</rename>
+        <type>String</type>
+        <length>10</length>
+        <precision>-2</precision>
+        <conversion_mask>dd/MM/yyyy</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1024</xloc>
+      <yloc>576</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>TIME_ID Format conversion 2</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -2415,30 +2461,50 @@ CUSTOMERS.COUNTRY = 'France'
         <currency_symbol/>
         <storage_type/>
       </meta>
-      <meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1024</xloc>
+      <yloc>496</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>TIME_ID to Date</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>TIME_ID</name>
+      </field>
+      <field>
         <name>MONTH_ID</name>
-        <rename>MONTH_ID</rename>
-        <type>None</type>
-        <length>9</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
+      </field>
+      <field>
         <name>YEAR_ID</name>
-        <rename>YEAR_ID</rename>
-        <type>None</type>
-        <length>9</length>
-        <precision>0</precision>
-        <conversion_mask/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>TIME_ID</name>
+        <rename>TIME_ID</rename>
+        <type>Date</type>
+        <length>10</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -2461,6 +2527,86 @@ CUSTOMERS.COUNTRY = 'France'
     <GUI>
       <xloc>672</xloc>
       <yloc>496</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>TIME_ID to Date and SALES to SALES_USD</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>ORDERNUMBER</name>
+      </field>
+      <field>
+        <name>CUSTOMERNUMBER</name>
+      </field>
+      <field>
+        <name>PRODUCTCODE</name>
+      </field>
+      <field>
+        <name>TIME_ID</name>
+      </field>
+      <field>
+        <name>SALES</name>
+      </field>
+      <field>
+        <name>QUANTITY</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>TIME_ID</name>
+        <rename>TIME_ID</rename>
+        <type>Date</type>
+        <length>10</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>SALES</name>
+        <rename>SALES_USD</rename>
+        <type>None</type>
+        <length>56</length>
+        <precision>4</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>576</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2558,89 +2704,6 @@ CUSTOMERS.COUNTRY = 'France'
     <GUI>
       <xloc>672</xloc>
       <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Values conversion</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>CUSTOMERNUMBER</name>
-      </field>
-      <field>
-        <name>CUSTOMERNAME</name>
-      </field>
-      <field>
-        <name>PRODUCTCODE</name>
-      </field>
-      <field>
-        <name>PRODUCTNAME</name>
-      </field>
-      <field>
-        <name>TIME_ID</name>
-      </field>
-      <field>
-        <name>SALES</name>
-      </field>
-      <field>
-        <name>QUANTITY</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>TIME_ID</name>
-        <rename>TIME_ID</rename>
-        <type>String</type>
-        <length>10</length>
-        <precision>-2</precision>
-        <conversion_mask>dd/MM/yyyy</conversion_mask>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>SALES</name>
-        <rename>SALES_USD</rename>
-        <type>None</type>
-        <length>56</length>
-        <precision>4</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>576</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

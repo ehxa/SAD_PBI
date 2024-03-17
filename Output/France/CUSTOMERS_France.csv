@@ -1,13 +1,13 @@
-CUSTOMERNUMBER,CUSTOMERNAME,PHONE,CITY,POSTALCODE,COUNTRY
-103,Atelier graphique,40.32.2555,Nantes,44000,France
-119,La Rochelle Gifts,40.67.8555,Nantes,44000,France
-146,"Saveley & Henriot, Co.",78.32.5555,Lyon,69004,France
-171,Daedalus Designs Imports,20.16.1555,Lille,59000,France
-172,"La Corne D'abondance, Co.",(1) 42.34.2555,Paris,75012,France
-209,Mini Caravy,88.60.1555,Strasbourg,67000,France
-242,Alpha Cognac,61.77.6555,Toulouse,31000,France
-250,Lyon Souveniers,+33 1 46 62 7555,Paris,75508,France
-256,Auto Associés & Cie.,30.59.8555,Versailles,78000,France
-350,Marseille Mini Autos,91.24.4555,Marseille,13008,France
-353,Reims Collectables,26.47.1555,Reims,51100,France
-406,Auto Canal+ Petit,(1) 47.55.6555,Paris,75016,France
+CUSTOMERNUMBER,CUSTOMERNAME,PHONE,CITY,STATE,POSTALCODE,COUNTRY
+103,Atelier graphique                                 ,40.32.2555                                        ,Nantes                                            ,N/A                                               ,44000          ,France                                            
+119,La Rochelle Gifts                                 ,40.67.8555                                        ,Nantes                                            ,N/A                                               ,44000          ,France                                            
+146,"Saveley & Henriot, Co.                            ",78.32.5555                                        ,Lyon                                              ,N/A                                               ,69004          ,France                                            
+171,Daedalus Designs Imports                          ,20.16.1555                                        ,Lille                                             ,N/A                                               ,59000          ,France                                            
+172,"La Corne D'abondance, Co.                         ",(1) 42.34.2555                                    ,Paris                                             ,N/A                                               ,75012          ,France                                            
+209,Mini Caravy                                       ,88.60.1555                                        ,Strasbourg                                        ,N/A                                               ,67000          ,France                                            
+242,Alpha Cognac                                      ,61.77.6555                                        ,Toulouse                                          ,N/A                                               ,31000          ,France                                            
+250,Lyon Souveniers                                   ,+33 1 46 62 7555                                  ,Paris                                             ,N/A                                               ,75508          ,France                                            
+256,Auto Associés & Cie.                              ,30.59.8555                                        ,Versailles                                        ,N/A                                               ,78000          ,France                                            
+350,Marseille Mini Autos                              ,91.24.4555                                        ,Marseille                                         ,N/A                                               ,13008          ,France                                            
+353,Reims Collectables                                ,26.47.1555                                        ,Reims                                             ,N/A                                               ,51100          ,France                                            
+406,Auto Canal+ Petit                                 ,(1) 47.55.6555                                    ,Paris                                             ,N/A                                               ,75016          ,France                                            
