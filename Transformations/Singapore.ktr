@@ -2231,27 +2231,33 @@ CUSTOMERS.COUNTRY = 'Singapore'
     <fields>
       <field>
         <name>ORDERNUMBER</name>
+        <rename/>
       </field>
       <field>
         <name>ORDERDATE</name>
+        <rename/>
       </field>
       <field>
         <name>REQUIREDDATE</name>
+        <rename/>
       </field>
       <field>
         <name>SHIPPEDDATE</name>
+        <rename/>
       </field>
       <field>
         <name>STATUS</name>
+        <rename/>
       </field>
       <field>
         <name>CUSTOMERNUMBER</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
         <name>ORDERNUMBER</name>
         <rename>ORDERNUMBER</rename>
-        <type>Number</type>
+        <type>None</type>
         <length>9</length>
         <precision>0</precision>
         <conversion_mask/>
@@ -2266,9 +2272,26 @@ CUSTOMERS.COUNTRY = 'Singapore'
         <storage_type/>
       </meta>
       <meta>
+        <name>STATUS</name>
+        <rename>STATUS</rename>
+        <type>None</type>
+        <length>15</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
         <name>CUSTOMERNUMBER</name>
         <rename>CUSTOMERNUMBER</rename>
-        <type>Number</type>
+        <type>None</type>
         <length>9</length>
         <precision>0</precision>
         <conversion_mask/>
@@ -2362,27 +2385,21 @@ CUSTOMERS.COUNTRY = 'Singapore'
     <fields>
       <field>
         <name>ORDERNUMBER</name>
-        <rename/>
       </field>
       <field>
         <name>CUSTOMERNUMBER</name>
-        <rename/>
       </field>
       <field>
         <name>PRODUCTCODE</name>
-        <rename/>
       </field>
       <field>
         <name>TIME_ID</name>
-        <rename/>
       </field>
       <field>
         <name>SALES</name>
-        <rename/>
       </field>
       <field>
         <name>QUANTITY</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
