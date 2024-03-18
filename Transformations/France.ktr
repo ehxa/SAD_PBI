@@ -1389,18 +1389,6 @@ GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE,
         <precision>-1</precision>
       </field>
       <field>
-        <name>QUANTITY</name>
-        <type>Integer</type>
-        <format>####0;-####0</format>
-        <currency/>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>15</length>
-        <precision>0</precision>
-      </field>
-      <field>
         <name>SALES</name>
         <type>Number</type>
         <format>####0.0#########;-####0.0#########</format>
@@ -1411,6 +1399,18 @@ GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE,
         <trim_type>none</trim_type>
         <length>16</length>
         <precision>2</precision>
+      </field>
+      <field>
+        <name>QUANTITY</name>
+        <type>Integer</type>
+        <format>####0;-####0</format>
+        <currency/>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
       </field>
     </fields>
     <attributes/>
