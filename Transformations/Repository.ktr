@@ -1190,11 +1190,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Binary to Normal 3</from>
-      <to>Merge rows (diff) 9</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Select values</from>
       <to>Merge rows (diff) 9 2</to>
       <enabled>Y</enabled>
@@ -1327,6 +1322,16 @@
     <hop>
       <from>Filter flagfield 8 2 3 3</from>
       <to>FACT</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Binary to Normal 3</from>
+      <to>Select values 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values 2</from>
+      <to>Merge rows (diff) 9</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -10510,7 +10515,7 @@ FROM FACT
       <meta>
         <name>TIME_ID</name>
         <rename>TIME_ID</rename>
-        <type>String</type>
+        <type>Date</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -10527,7 +10532,7 @@ FROM FACT
       <meta>
         <name>SALES</name>
         <rename>SALES</rename>
-        <type>Number</type>
+        <type>Integer</type>
         <length>15</length>
         <precision>0</precision>
         <conversion_mask/>
@@ -10938,7 +10943,7 @@ FROM FACT
     </values>
     <flag_field>flagfield</flag_field>
     <reference>BUYPRICE to SALES</reference>
-    <compare>Binary to Normal 3</compare>
+    <compare>Select values 2</compare>
     <compare>
     </compare>
     <attributes/>
@@ -12191,6 +12196,136 @@ FROM FACT
     <GUI>
       <xloc>2000</xloc>
       <yloc>2304</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values 2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>ORDERNUMBER</name>
+        <rename>ORDERNUMBER</rename>
+        <type>Integer</type>
+        <length>15</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>CUSTOMERNUMBER</name>
+        <rename>CUSTOMERNUMBER</rename>
+        <type>Integer</type>
+        <length>15</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>PRODUCTCODE</name>
+        <rename>PRODUCTCODE</rename>
+        <type>None</type>
+        <length>9</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>TIME_ID</name>
+        <rename>TIME_ID</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>SALES</name>
+        <rename>SALES</rename>
+        <type>Number</type>
+        <length>15</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>QUANTITY</name>
+        <rename>QUANTITY</rename>
+        <type>Integer</type>
+        <length>15</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>2176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
