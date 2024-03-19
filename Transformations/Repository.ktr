@@ -1050,11 +1050,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Remove ID 3</from>
-      <to>Modified JavaScript value 8</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Sort rows 2</from>
       <to>Unique rows 3</to>
       <enabled>Y</enabled>
@@ -1081,6 +1076,31 @@
     </hop>
     <hop>
       <from>Conversion 3</from>
+      <to>Sort rows 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Conversion 2 2</from>
+      <to>Sort rows 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Conversion 2 3</from>
+      <to>Sort rows 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Remove ID 3</from>
+      <to>Modified JavaScript value 8</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modified JavaScript value 8</from>
+      <to>String to number</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>String to number</from>
       <to>Sort rows 2</to>
       <enabled>Y</enabled>
     </hop>
@@ -1663,21 +1683,27 @@
     <fields>
       <field>
         <name>ORDERNUMBER</name>
+        <rename/>
       </field>
       <field>
         <name>ORDERDATE</name>
+        <rename/>
       </field>
       <field>
         <name>REQUIREDDATE</name>
+        <rename/>
       </field>
       <field>
         <name>SHIPPEDDATE</name>
+        <rename/>
       </field>
       <field>
         <name>STATUS</name>
+        <rename/>
       </field>
       <field>
         <name>CUSTOMERNUMBER</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -1703,7 +1729,7 @@
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -1720,7 +1746,7 @@
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -1737,7 +1763,7 @@
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -1890,21 +1916,27 @@
     <fields>
       <field>
         <name>ORDERNUMBER</name>
+        <rename/>
       </field>
       <field>
         <name>ORDERDATE</name>
+        <rename/>
       </field>
       <field>
         <name>REQUIREDDATE</name>
+        <rename/>
       </field>
       <field>
         <name>SHIPPEDDATE</name>
+        <rename/>
       </field>
       <field>
         <name>STATUS</name>
+        <rename/>
       </field>
       <field>
         <name>CUSTOMERNUMBER</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -1930,7 +1962,7 @@
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -1947,7 +1979,7 @@
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -1964,7 +1996,7 @@
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -2038,21 +2070,27 @@
     <fields>
       <field>
         <name>ORDERNUMBER</name>
+        <rename/>
       </field>
       <field>
         <name>ORDERDATE</name>
+        <rename/>
       </field>
       <field>
         <name>REQUIREDDATE</name>
+        <rename/>
       </field>
       <field>
         <name>SHIPPEDDATE</name>
+        <rename/>
       </field>
       <field>
         <name>STATUS</name>
+        <rename/>
       </field>
       <field>
         <name>CUSTOMERNUMBER</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -2078,7 +2116,7 @@
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -2112,7 +2150,7 @@
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -2186,21 +2224,27 @@
     <fields>
       <field>
         <name>ORDERNUMBER</name>
+        <rename/>
       </field>
       <field>
         <name>ORDERDATE</name>
+        <rename/>
       </field>
       <field>
         <name>REQUIREDDATE</name>
+        <rename/>
       </field>
       <field>
         <name>SHIPPEDDATE</name>
+        <rename/>
       </field>
       <field>
         <name>STATUS</name>
+        <rename/>
       </field>
       <field>
         <name>CUSTOMERNUMBER</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -2226,7 +2270,7 @@
         <type>String</type>
         <length>0</length>
         <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -2243,7 +2287,7 @@
         <type>String</type>
         <length>0</length>
         <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -2260,7 +2304,7 @@
         <type>String</type>
         <length>0</length>
         <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -2334,21 +2378,27 @@
     <fields>
       <field>
         <name>ORDERNUMBER</name>
+        <rename/>
       </field>
       <field>
         <name>ORDERDATE</name>
+        <rename/>
       </field>
       <field>
         <name>REQUIREDDATE</name>
+        <rename/>
       </field>
       <field>
         <name>SHIPPEDDATE</name>
+        <rename/>
       </field>
       <field>
         <name>STATUS</name>
+        <rename/>
       </field>
       <field>
         <name>CUSTOMERNUMBER</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -2374,7 +2424,7 @@
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -2391,7 +2441,7 @@
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -2408,7 +2458,7 @@
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -2482,21 +2532,27 @@
     <fields>
       <field>
         <name>ORDERNUMBER</name>
+        <rename/>
       </field>
       <field>
         <name>ORDERDATE</name>
+        <rename/>
       </field>
       <field>
         <name>REQUIREDDATE</name>
+        <rename/>
       </field>
       <field>
         <name>SHIPPEDDATE</name>
+        <rename/>
       </field>
       <field>
         <name>STATUS</name>
+        <rename/>
       </field>
       <field>
         <name>CUSTOMERNUMBER</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -2522,7 +2578,7 @@
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -2539,7 +2595,7 @@
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -2556,7 +2612,7 @@
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -8479,7 +8535,7 @@ FROM germany_db.fact
       </field>
       <field>
         <name>BUYPRICE</name>
-        <type>Integer</type>
+        <type>Number</type>
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
@@ -8833,7 +8889,7 @@ FROM germany_db.fact
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
+      <xloc>512</xloc>
       <yloc>2416</yloc>
       <draw>Y</draw>
     </GUI>
@@ -9677,7 +9733,7 @@ var SALES = SALES / 147.1449;
 }
 
 var TIME_ID = convertFormat(TIME_ID);
-</jsScript_script>
+var SALES = SALES / 0.9142;</jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>
@@ -9687,6 +9743,14 @@ var TIME_ID = convertFormat(TIME_ID);
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>SALES</name>
+        <rename>SALES</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>2</precision>
         <replace>Y</replace>
       </field>
     </fields>
@@ -9726,14 +9790,6 @@ var TIME_ID = convertFormat(TIME_ID);
       </jsScript>
     </jsScripts>
     <fields>
-      <field>
-        <name>TIME_ID</name>
-        <rename>TIME_ID</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>Y</replace>
-      </field>
       <field>
         <name>SALES</name>
         <rename>SALES</rename>
@@ -9907,53 +9963,6 @@ var SALES = SALES / 1.3316;
     </GUI>
   </step>
   <step>
-    <name>Modified JavaScript value 8</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var SALES = parseInt(SALES, 10); 
-
-
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>SALES</name>
-        <rename>SALES</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>Y</replace>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>2496</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Unique rows 3</name>
     <type>Unique</type>
     <description/>
@@ -10115,6 +10124,121 @@ var SALES = SALES / 1.3316;
     <GUI>
       <xloc>512</xloc>
       <yloc>2176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Modified JavaScript value 8</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var SALES = SALES.split('.')[0];
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>SALES</name>
+        <rename>SALES</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>544</xloc>
+      <yloc>2496</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>String to number</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>ORDERNUMBER</name>
+        <rename/>
+      </field>
+      <field>
+        <name>CUSTOMERNUMBER</name>
+        <rename/>
+      </field>
+      <field>
+        <name>PRODUCTCODE</name>
+        <rename/>
+      </field>
+      <field>
+        <name>TIME_ID</name>
+        <rename/>
+      </field>
+      <field>
+        <name>SALES</name>
+        <rename/>
+      </field>
+      <field>
+        <name>QUANTITY</name>
+        <rename/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>SALES</name>
+        <rename>SALES</rename>
+        <type>Number</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>2496</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

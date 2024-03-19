@@ -1391,7 +1391,7 @@ GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE,
       <field>
         <name>SALES</name>
         <type>Number</type>
-        <format>####0.0#########;-####0.0#########</format>
+        <format>0.00</format>
         <currency/>
         <decimal>,</decimal>
         <group>.</group>
@@ -1403,7 +1403,7 @@ GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE,
       <field>
         <name>QUANTITY</name>
         <type>Integer</type>
-        <format>####0;-####0</format>
+        <format/>
         <currency/>
         <decimal>,</decimal>
         <group>.</group>
@@ -1422,7 +1422,7 @@ GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE,
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1648</xloc>
+      <xloc>1696</xloc>
       <yloc>576</yloc>
       <draw>Y</draw>
     </GUI>
