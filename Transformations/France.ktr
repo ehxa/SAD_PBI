@@ -1493,7 +1493,7 @@ var MSRP = MSRP_USD * 0.9142;
       <field>
         <name>BUYPRICE</name>
         <rename>BUYPRICE</rename>
-        <type>Number</type>
+        <type>Integer</type>
         <length>16</length>
         <precision>2</precision>
         <replace>N</replace>
@@ -1501,7 +1501,7 @@ var MSRP = MSRP_USD * 0.9142;
       <field>
         <name>MSRP</name>
         <rename>MSRP</rename>
-        <type>Number</type>
+        <type>Integer</type>
         <length>16</length>
         <precision>2</precision>
         <replace>N</replace>
@@ -2321,28 +2321,52 @@ CUSTOMERS.COUNTRY = 'France'
         <precision>0</precision>
       </field>
       <field>
+        <name>BUYPRICE_USD</name>
+        <type>Integer</type>
+        <format>####0;-####0</format>
+        <currency/>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>17</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>MSRP_USD</name>
+        <type>Integer</type>
+        <format>####0;-####0</format>
+        <currency/>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>17</length>
+        <precision>0</precision>
+      </field>
+      <field>
         <name>BUYPRICE</name>
-        <type>Number</type>
-        <format>####0.0#########;-####0.0#########</format>
+        <type>Integer</type>
+        <format>####0;-####0</format>
         <currency/>
         <decimal>,</decimal>
         <group>.</group>
         <nullif/>
         <trim_type>none</trim_type>
         <length>16</length>
-        <precision>2</precision>
+        <precision>0</precision>
       </field>
       <field>
         <name>MSRP</name>
-        <type>Number</type>
-        <format>####0.0#########;-####0.0#########</format>
+        <type>Integer</type>
+        <format>####0;-####0</format>
         <currency/>
         <decimal>,</decimal>
         <group>.</group>
         <nullif/>
         <trim_type>none</trim_type>
         <length>16</length>
-        <precision>2</precision>
+        <precision>0</precision>
       </field>
     </fields>
     <attributes/>

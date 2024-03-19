@@ -1526,18 +1526,6 @@ GROUP BY ORDERFACT.ORDERNUMBER, ORDERFACT.CUSTOMERNUMBER, ORDERFACT.PRODUCTCODE,
         <hyperlinkField/>
       </field>
       <field>
-        <name>SALES_USD</name>
-        <type>BigNumber</type>
-        <format/>
-        <title>SALES_USD</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
         <name>BUYPRICE</name>
         <type>Number</type>
         <format>00000000000000.00</format>
@@ -2562,7 +2550,7 @@ CUSTOMERS.COUNTRY = 'Japan'
         <type>String</type>
         <length>10</length>
         <precision>-2</precision>
-        <conversion_mask>dd/MM/yyyy</conversion_mask>
+        <conversion_mask>yyyy/MM/dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -2616,7 +2604,7 @@ CUSTOMERS.COUNTRY = 'Japan'
         <type>String</type>
         <length>10</length>
         <precision>-2</precision>
-        <conversion_mask>dd/MM/yyyy</conversion_mask>
+        <conversion_mask>yyyy/MM/dd</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -2887,27 +2875,21 @@ CUSTOMERS.COUNTRY = 'Japan'
     <fields>
       <field>
         <name>ORDERNUMBER</name>
-        <rename/>
       </field>
       <field>
         <name>ORDERDATE</name>
-        <rename/>
       </field>
       <field>
         <name>REQUIREDDATE</name>
-        <rename/>
       </field>
       <field>
         <name>SHIPPEDDATE</name>
-        <rename/>
       </field>
       <field>
         <name>STATUS</name>
-        <rename/>
       </field>
       <field>
         <name>CUSTOMERNUMBER</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
