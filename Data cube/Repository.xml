@@ -1,0 +1,34 @@
+<Schema name="New Schema1">
+  <Cube name="A02-Group" visible="true" cache="true" enabled="true">
+    <Table name="fact" alias="">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="CUSTOMERNUMBER" name="Customers">
+      <Hierarchy name="Customers" visible="true" hasAll="true" allMemberName="All Customers" primaryKey="CUSTOMERNUMBER">
+        <Table name="customers" alias="">
+        </Table>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="ORDERNUMBER" name="Orders">
+      <Hierarchy name="Orders" visible="true" hasAll="true" allMemberName="All Orders" primaryKey="ORDERNUMBER">
+        <Table name="orders" alias="">
+        </Table>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" name="Products">
+      <Hierarchy name="Products" visible="true" hasAll="true" allMemberName="All Products" primaryKey="PRODUCTCODE">
+        <Table name="products" alias="">
+        </Table>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="TIME_ID" name="Time">
+      <Hierarchy name="Time" visible="true" hasAll="true" allMemberName="All Time" primaryKeyTable="TIME_ID">
+        <Table name="dim_time" alias="">
+        </Table>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Sales" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Quantity" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
