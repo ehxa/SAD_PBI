@@ -1,34 +1,80 @@
 <Schema name="New Schema1">
   <Cube name="A02-Group" visible="true" cache="true" enabled="true">
-    <Table name="fact" alias="">
+    <Table name="fact">
     </Table>
-    <Dimension type="StandardDimension" visible="true" foreignKey="CUSTOMERNUMBER" name="Customers">
+    <Dimension type="StandardDimension" visible="true" foreignKey="CUSTOMERNUMBER" highCardinality="false" name="Customers">
       <Hierarchy name="Customers" visible="true" hasAll="true" allMemberName="All Customers" primaryKey="CUSTOMERNUMBER">
-        <Table name="customers" alias="">
+        <Table name="customers">
         </Table>
+        <Level name="Country" visible="true" table="customers" column="COUNTRY" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="State" visible="true" table="customers" column="STATE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="City" visible="true" table="customers" column="CITY" type="String" uniqueMembers="false">
+        </Level>
+        <Level name="Postal Code" visible="true" table="customers" column="CITY" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Customer Name" visible="true" table="customers" column="CITY" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Phone" visible="true" table="customers" column="PHONE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Customer Number" visible="true" table="customers" column="CUSTOMERNUMBER" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" foreignKey="ORDERNUMBER" name="Orders">
+    <Dimension type="StandardDimension" visible="true" foreignKey="ORDERNUMBER" highCardinality="false" name="Orders">
       <Hierarchy name="Orders" visible="true" hasAll="true" allMemberName="All Orders" primaryKey="ORDERNUMBER">
-        <Table name="orders" alias="">
+        <Table name="orders">
         </Table>
+        <Level name="Status" visible="true" table="orders" column="STATUS" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Shipped Date" visible="true" table="orders" column="SHIPPEDDATE" type="Timestamp" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Required Date" visible="true" table="orders" column="REQUIREDDATE" type="Timestamp" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Order Date" visible="true" table="orders" column="ORDERDATE" type="Timestamp" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Customer Number" visible="true" table="orders" column="CUSTOMERNUMBER" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Order Number" visible="true" table="orders" column="ORDERNUMBER" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" name="Products">
+    <Dimension type="StandardDimension" visible="true" foreignKey="PRODUCTCODE" highCardinality="false" name="Products">
       <Hierarchy name="Products" visible="true" hasAll="true" allMemberName="All Products" primaryKey="PRODUCTCODE">
-        <Table name="products" alias="">
+        <Table name="products">
         </Table>
+        <Level name="Buy Price" visible="true" table="products" column="BUYPRICE" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="MSRP" visible="true" table="products" column="MSRP" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Quantity in Stock" visible="true" table="products" column="QUANTITYINSTOCK" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Product Vendor" visible="true" table="products" column="PRODUCTVENDOR" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Product Scale" visible="true" table="products" column="PRODUCTSCALE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Product Line" visible="true" table="products" column="PRODUCTLINE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Product Name" visible="true" table="products" column="PRODUCTNAME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Product Code" visible="true" table="products" column="PRODUCTCODE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" foreignKey="TIME_ID" name="Time">
-      <Hierarchy name="Time" visible="true" hasAll="true" allMemberName="All Time" primaryKeyTable="TIME_ID">
-        <Table name="dim_time" alias="">
+    <Dimension type="StandardDimension" visible="true" foreignKey="TIME_ID" highCardinality="false" name="Time">
+      <Hierarchy name="Time" visible="true" hasAll="true" allMemberName="All Time" primaryKey="TIME_ID">
+        <Table name="dim_time">
         </Table>
+        <Level name="Year" visible="true" column="YEAR_ID" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Month" visible="true" table="dim_time" column="MONTH_ID" ordinalColumn="MONTH_ID" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
       </Hierarchy>
     </Dimension>
-    <Measure name="Sales" aggregator="sum" visible="true">
+    <Measure name="Sales" column="SALES" datatype="Numeric" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="Quantity" aggregator="sum" visible="true">
+    <Measure name="Quantity" column="QUANTITY" datatype="Integer" aggregator="sum" visible="true">
     </Measure>
   </Cube>
 </Schema>
